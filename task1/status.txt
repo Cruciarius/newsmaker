@@ -1,0 +1,43 @@
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   task1/.idea/compiler.xml
+        new file:   task1/.idea/copyright/profiles_settings.xml
+        new file:   task1/.idea/description.html
+        new file:   task1/.idea/encodings.xml
+        new file:   task1/.idea/misc.xml
+        new file:   task1/.idea/modules.xml
+        new file:   task1/.idea/vcs.xml
+        new file:   task1/.idea/workspace.xml
+        new file:   task1/src/Main.java
+        new file:   task1/task1.iml
+
+
+==============================================
+
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   task1/.idea/modules.xml
+        modified:   task1/.idea/workspace.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        task1/status.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+==============================================
+
+
+
