@@ -1,0 +1,18 @@
+$ git log
+commit ab0817f16188a5fc3cc1b5ed795ede704c3deec1
+Author: Ann Sivozhelezova <antaeussum@gmail.com>
+Date:   Tue Feb 7 20:47:59 2017 +0300
+
+    add status.txt
+
+commit 3205f04ef88bfff16516413127f807a4b882f7c7
+Author: Ann Sivozhelezova <antaeussum@gmail.com>
+Date:   Tue Feb 7 20:46:09 2017 +0300
+
+    add .gitignore
+
+commit b1d2ee7a035683096c1de02dfd25106e12d65a76
+Author: Ann Sivozhelezova <antaeussum@gmail.com>
+Date:   Tue Feb 7 20:42:53 2017 +0300
+
+    folder created
