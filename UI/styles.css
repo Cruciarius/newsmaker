@@ -1,0 +1,207 @@
+ 	<!-- styles.css -->   
+.wrapper {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                background-color: #b6b6b6;
+                padding: 0;
+                margin: 0;
+            }
+            header{
+                display: flex;
+                color: #00d0ff;
+                font-family: "Impact" ;
+                padding: 0.6em 0.6em;
+                background-color: #545454;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .WhiteButton{
+                color: #00d0ff;
+                background-color: #ebebeb;
+                font-family: "Impact" ;
+                font-variant: small-caps;
+                font-size: 1.2em;
+                font-weight: 500;
+                outline: none;
+                user-select: none;
+                text-decoration: none;
+                border: none;
+                padding: 0.2em 1.4em;
+                max-width: 10em;
+            }
+            .WhiteButton:hover{
+                background-color: #d5d5d5;
+                color: cornflowerblue;
+            }
+            .WhiteButton:active{
+                background-color: #c5c5c5;
+                color: cornflowerblue;
+            }
+            .GreyButton.WhiteButton{
+                color: #00d0ff;
+            }
+            .GreyButton:hover{
+                background-color: #bcbcbc;
+                color: cornflowerblue;
+            }
+            .GreyButton:active{
+                background-color: #acacac;
+                color: cornflowerblue;
+            }
+            footer{
+                display: flex;
+                color: #00d0ff;
+                font-size: 1.2em;
+                font-family: "Impact" ;
+                padding: 0.3em 1em 0.3em 1em;
+                background-color: #545454;
+                flex: 0 0 auto;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .textFooter{
+                color: #000000;
+                font-size: 0.8em;
+                font-family: "Impact" ;
+            }
+            .textFooterBold{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                color: #000000;
+                font-size: 1em;
+                font-weight: 500;
+                font-family: "Impact" ;
+            }
+            .dateBlock{
+                color: #00d0ff;
+                background-color: #b3b3b3;
+                margin-left: 0.4em;
+                padding: 0.1em 0.7em;
+            }
+            .main{
+                flex: 1 0 auto;
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-items: stretch;
+            }
+            .Filter{
+                flex: 1 1 auto;
+                max-width: 25%;
+                min-width: 25%;
+                padding: 0.1em 0.2em ;
+                background-color: #ebebeb;
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                border: solid;
+                border-color: #545454;
+                border-width: 0.1em;
+                margin-top: 4.5%;
+                margin-bottom: 4.5%;
+                margin-left: 9.5%;
+            }
+            .NewsBox{
+                flex: 1 1 auto;
+                max-width: 75%;
+                max-height: 15%;
+                padding: 0.1em 0.2em ;
+                background-color: #ebebeb;
+                display: flex;
+                flex-flow: row;
+                align-items: center;
+                justify-content: space-between;
+                border: solid;
+                border-width: 0.1em;
+                border-color: #545454;
+                margin-bottom: 4.5%;
+            }
+            .image{
+                margin-right: 0.5em;
+                width: 17.5%;
+                height: 17.5%;
+            }
+            .imageLogo{
+                margin-right: 0.5em;
+                width: 1em;
+                height: 1em;
+            }
+            .TextBox{
+                height: 100%;
+                font-family: Arial;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .Name{
+                flex: 1 1 auto;
+                max-height: 25%;
+                max-width: inherit;
+                user-select: none;
+                text-decoration: none;
+                font-variant: small-caps;
+                font-size: 1.2em;
+                font-weight: bold;
+                color: cornflowerblue;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .Name:hover{
+                color: #007d99;
+            }
+            .SmallText{
+                font-weight: bold;
+                text-align: match-parent;
+                font-variant: small-caps;
+                font-size: small;
+            }
+            .RegularText{
+                font-family: "Times New Roman";
+                text-align: match-parent;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .Tags{
+                white-space: nowrap;
+                font-weight: bold;
+                font-variant: small-caps;
+                color: cornflowerblue;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .Tag{
+                color: cornflowerblue;
+            }
+            .Tag:hover{
+                color: #007d99;
+            }
+            .NameFilter{
+                flex: 2 1 auto;
+                max-width: inherit;
+                user-select: none;
+                text-decoration: none;
+                font-variant: small-caps;
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #00d0ff;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .News{
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                margin-top: 4.5%;
+                margin-bottom: 2.5%;
+            }
