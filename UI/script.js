@@ -59,7 +59,176 @@ var articles = [
        author: "Petrov petr",
        content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
        tags : "ecology," +"animals,",
-    },
+  },
+   {
+       id: "7",
+       title: "Supreme Court drops landmark transgender school bathroom case",
+       summary: "The US Supreme Court has reversed its decision to hear a landmark case on transgender bathroom rights.",
+       createdAt: new Date("1027-02-27"),
+       author: "bbc",
+       content: "Gavin Grimm, who was born female but identifies as male, sued his school board over their policy which prevented him from using male facilities."+
+                "The Supreme Court had scheduled for a hearing on 28 March."+
+                "However, it has now sent the case back to a lower court after Donald Trump's administration issued new policy guidance relevant to the case."+
+                "The US Court of Appeals for the 4th Circuit originally ruled in Mr Grimm's favour in April last year."+
+                "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights."+
+                "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
+       tags: "ecology," + "people," + "society,",
+   },
+   {
+       id: "8",
+       title: "Stella McCartney's surprise George Michael tribute",
+       summary: "Stella McCartney models burst into a rendition of the late singer's hit song Faith on the runway at Paris Fashion Week.",
+       createdAt: new Date("2027-02-27"),
+       author: "Petrov petr",
+       content: "video",
+       tags: "people,",
+   },
+   {
+       id: "9",
+       title: "Gender pay gap in 'reverse' for some ethnic groups",
+       summary: "Working women in some ethnic groups in the UK have not only narrowed the gender pay gap but have overtaken men's earning power, analysis suggests.",
+       createdAt: new Date("2007-12-27"),
+       author: "Petrov petr",
+       content: "The Fawcett Society, which campaigns for equality, said Caribbean and white Irish working women, on average, earn more than men from the same background."+
+                "Its report found that, for most ethnic groups, men earned more than women."+
+                "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK."+
+                "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "10",
+       title: "Troadec case: Brother-in-law admits murdering missing family of four",
+       summary: "A relative of a French family of four who have been missing since mid-February has admitted killing them, a prosecutor said.",
+       createdAt: new Date("2010-10-10"),
+       author: "Petrov petr",
+       content: "Pascal Troadec's former brother-in-law, named as Hubert Caouissin, told investigators he had killed them in a row about the inheritance of gold bars."+
+                "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said."+
+                "Mr Caouissin will be charged and jailed on Monday."+
+                "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "11",
+       title: "India 'human sacrifice': Arrests over 10-year-old's death",
+       summary: "Police in the south Indian state of Karnataka have arrested three people in connection with the human sacrifice of a 10-year-old girl .",
+       createdAt: new Date("2027-02-27"),
+       author: "Petrov petr",
+       content: "Police told BBC Hindi that the child was killed on the instructions of a sorcerer to cure a paralysed man."+
+                "The man's brother and sister have been arrested on charges of abducting and murdering the girl."+
+                "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said."+
+                "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "12",
+       title: "Gender pay gap in 'reverse' for some ethnic groups",
+       summary: "Working women in some ethnic groups in the UK have not only narrowed the gender pay gap but have overtaken men's earning power, analysis suggests.",
+       createdAt: new Date("2007-12-27"),
+       author: "PETROV petr",
+       content: "The Fawcett Society, which campaigns for equality, said Caribbean and white Irish working women, on average, earn more than men from the same background." +
+                "Its report found that, for most ethnic groups, men earned more than women." +
+                "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
+                "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "13",
+       title: "Troadec case: Brother-in-law admits murdering missing family of four",
+       summary: "A relative of a French family of four who have been missing since mid-February has admitted killing them, a prosecutor said.",
+       createdAt: new Date("2010-2-31"),
+       author: "Petrov petr",
+       content: "Pascal Troadec's former brother-in-law, named as Hubert Caouissin, told investigators he had killed them in a row about the inheritance of gold bars." +
+                "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said." +
+                "Mr Caouissin will be charged and jailed on Monday." +
+                "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "14",
+       title: "India 'human sacrifice': Arrests over 10-year-old's death",
+       summary: "Police in the south Indian state of Karnataka have arrested three people in connection with the human sacrifice of a 10-year-old girl .",
+       createdAt: new Date("2027-02-27"),
+       author: "Petrov petr",
+       content: "Police told BBC Hindi that the child was killed on the instructions of a sorcerer to cure a paralysed man." +
+                "The man's brother and sister have been arrested on charges of abducting and murdering the girl." +
+                "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said." +
+                "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
+       tags: "people," + "society,"+"murder,",
+   },
+   {
+       id: "14",
+       title: "The turtle who ate 1,000 coins",
+       summary: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
+       createdAt: new Date("2017-02-27"),
+       author: "Ivanov",
+       content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
+       tags: "ecology," + "turtles,",
+   },
+  {
+      id: "15",
+      title: "The turtle who ate 1,000 coins",
+      summary: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
+      createdAt: new Date("2017-02-28"),
+      author: "Ivanov Ivan",
+      content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
+      tags: "ecology," + "animals,",
+  },
+  {
+      id: "16",
+      title: "The turtle who ate 1,000 coins",
+      summary: "",
+      createdAt: new Date("2027-02-27"),
+      author: "Dima Sidorov",
+      content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
+      tags: "ecology," + "animals,",
+  },
+   {
+       id: "17",
+       title: "Supreme Court drops landmark transgender school bathroom case",
+       summary: "The US Supreme Court has reversed its decision to hear a landmark case on transgender bathroom rights.",
+       createdAt: new Date("1027-02-27"),
+       author: "bbc",
+       content: "Gavin Grimm, who was born female but identifies as male, sued his school board over their policy which prevented him from using male facilities." +
+                "The Supreme Court had scheduled for a hearing on 28 March." +
+                "However, it has now sent the case back to a lower court after Donald Trump's administration issued new policy guidance relevant to the case." +
+                "The US Court of Appeals for the 4th Circuit originally ruled in Mr Grimm's favour in April last year." +
+                "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights." +
+                "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
+       tags: "ecology," + "people," + "society,",
+   },
+   {
+       id: "18",
+       title: "Stella McCartney's surprise George Michael tribute",
+       summary: "Stella McCartney models burst into a rendition of the late singer's hit song Faith on the runway at Paris Fashion Week.",
+       createdAt: new Date("2027-02-27"),
+       author: "Petrov petr",
+       content: "video",
+       tags: "people,",
+   },
+   {
+       id: "19",
+       title: "Gender pay gap in 'reverse' for some ethnic groups",
+       summary: "Working women in some ethnic groups in the UK have not only narrowed the gender pay gap but have overtaken men's earning power, analysis suggests.",
+       createdAt: new Date("2007-12-27"),
+       author: "Petrov petr",
+       content: "The Fawcett Society, which campaigns for equality, said Caribbean and white Irish working women, on average, earn more than men from the same background." +
+                "Its report found that, for most ethnic groups, men earned more than women." +
+                "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
+                "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
+       tags: "people," + "society,",
+   },
+   {
+       id: "20",
+       title: "Troadec case: Brother-in-law admits murdering missing family of four",
+       summary: "A relative of a French family of four who have been missing since mid-February has admitted killing them, a prosecutor said.",
+       createdAt: new Date("2010-10-10"),
+       author: "Petrov petr",
+       content: "Pascal Troadec's former brother-in-law, named as Hubert Caouissin, told investigators he had killed them in a row about the inheritance of gold bars." +
+                "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said." +
+                "Mr Caouissin will be charged and jailed on Monday." +
+                "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
+       tags: "people," + "society,",
+   },
 ];
 
 var filterConfig = {
@@ -69,7 +238,7 @@ var filterConfig = {
    tags : undefined,
 }
 
-var tags = [ "sports", "ecology", "politics", "cinema" , "games", "animals",];
+var tags = [ "sports", "ecology", "politics", "cinema" , "games", "animals", "people", "society"];
 
 function getArticles(skip,top,fc){
 filterConfig = fc||filterConfig;
