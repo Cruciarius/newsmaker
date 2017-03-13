@@ -8,7 +8,7 @@ flex-flow: column;
 justify-content: center;
 align-items: center;
 }
-.BigBlock{
+.Big-Block{
 flex: 1 1 auto;
 display: flex;
 flex-flow: column;

@@ -1,0 +1,285 @@
+<!--
+style.css
+
+-->
+.begin {
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+    background-color: #b6b6b6;
+    padding: 0;
+    margin: 0;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+header {
+    display: flex;
+    color: #00d0ff;
+    font-family: "Impact";
+    padding: 0.6em 0.6em;
+    background-color: #545454;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.White-Button {
+    color: #00d0ff;
+    background-color: #ebebeb;
+    font-family: "Impact";
+    font-variant: small-caps;
+    font-size: 1.4vw;
+    font-weight: 500;
+    outline: none;
+    user-select: none;
+    text-decoration: none;
+    border: none;
+    padding: 0.2em 1.4em;
+    max-width: 10em;
+}
+
+.White-Button:hover {
+    background-color: #d5d5d5;
+    color: cornflowerblue;
+}
+
+.White-Button:active {
+    background-color: #c5c5c5;
+    color: cornflowerblue;
+}
+
+.Grey-Button {
+    color: #00d0ff;
+    background-color: #d5d5d5;
+    font-family: "Impact";
+    font-variant: small-caps;
+    font-size: 1.4vw;
+    font-weight: 500;
+    outline: none;
+    user-select: none;
+    text-decoration: none;
+    border: none;
+    padding: 0.2em 1.4em;
+}
+
+.Grey-Button:hover {
+    background-color: #bcbcbc;
+    color: cornflowerblue;
+}
+
+.Grey-Button:active {
+    background-color: #acacac;
+    color: cornflowerblue;
+}
+
+footer {
+    display: flex;
+    color: #00d0ff;
+    font-size: 1.3vw;
+    font-family: "Impact";
+    padding: 0.3em 1em 0.3em 1em;
+    background-color: #545454;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-Footer {
+    color: #000000;
+    font-size: 1.1vw;
+    font-family: "Impact";
+}
+
+.text-Footer-Bold {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000000;
+    font-size: 100%;
+    font-weight: 500;
+    font-family: "Impact";
+}
+
+.date-Block {
+    color: #00d0ff;
+    background-color: #b3b3b3;
+    margin-left: 0.4em;
+    padding: 0.1em 0.7em;
+}
+
+.main {
+    height: 80vh;
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.Filter {
+    flex: 1 1 auto;
+    max-width: 25vw;
+    min-width: 25vw;
+    min-height: 35vh;
+    max-height: 80vh;
+    padding: 0.1em 0.2em;
+    background-color: #ebebeb;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border: solid;
+    border-color: #545454;
+    border-width: 0.1em;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-left: 9.5%;
+}
+
+.News-Box {
+    flex: 1 0 auto;
+    max-width: 75%;
+    max-height: 25%;
+    padding: 0.1em 0.2em;
+    background-color: #ebebeb;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    border-width: 0.1em;
+    border-color: #545454;
+    margin-bottom: 4.5%;
+}
+
+.image {
+    margin-right: 0.5em;
+    width: 17.5%;
+    height: 25%;
+}
+
+.image-Logo {
+    margin-right: 0.5em;
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.Text-Box {
+    font-size: 1.1vw;
+    height: 100%;
+    font-family: Arial;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Name {
+    flex: 1 0 auto;
+    max-height: 25%;
+    max-width: inherit;
+    user-select: none;
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: 1.3vw;
+    font-weight: bold;
+    color: cornflowerblue;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Name:hover {
+    color: #007d99;
+}
+
+.Small-Text {
+    font-weight: bold;
+    text-align: end;
+    font-variant: small-caps;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+}
+
+.Regular-Text {
+    font-family: "Times New Roman";
+    text-align: match-parent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Tags {
+    white-space: nowrap;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: cornflowerblue;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Tag {
+    color: cornflowerblue;
+}
+
+.Tag:hover {
+    color: #007d99;
+}
+
+.Name-Filter {
+    flex: 2 1 auto;
+    max-width: inherit;
+    user-select: none;
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: 1.1vw;
+    font-weight: bold;
+    color: #00d0ff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Name-Filter-Tags {
+    flex: 2 1 auto;
+    max-width: inherit;
+    user-select: none;
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: 1.1vw;
+    font-weight: bold;
+    color: #00d0ff;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.News {
+    min-height: 10vh;
+    max-height: 80vh;
+    min-width: 65vw;
+    overflow-y: scroll;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+}
+
+.News-Wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}

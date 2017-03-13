@@ -1,14 +1,19 @@
-<!-- style.css -->
-.begin{
+<!--
+style.css
+
+-->
+.begin {
 }
-.main{
+
+.main {
     flex: 1 0 auto;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
-.BigBlock{
+
+.Big-Block {
     flex: 1 1 auto;
     display: flex;
     flex-flow: column;
@@ -22,8 +27,17 @@
     font-weight: bold;
     font-size: 2vw;
 }
-.ErrorMessage{
+
+.Error-Message {
     padding: 2vw;
     color: #ff041a;
     font-size: 3vw;
+}
+
+.Wide-Space {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
