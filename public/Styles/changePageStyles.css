@@ -1,0 +1,27 @@
+<!-- style.css -->
+.begin{
+}
+.main{
+flex: 1 0 auto;
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+}
+.Big-Block{
+flex: 1 1 auto;
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+color: #00d0ff;
+background-color: #ebebeb;
+width: 75%;
+height: 50%;
+font-family: Arial;
+font-weight: bold;
+font-size: 2vw;
+}
+textarea{
+    overflow: auto;
+}
