@@ -9,7 +9,8 @@ var articleService = (function () {
             createdAt: new Date("2017-02-27"),
             author: "Иванов Иван",
             content: "Гости создали больше опасных моментов и в два раза перебросали минчан, но «зубры» на этот раз очень эффективно использовали свои моменты.",
-            tags: ["sports"]
+            tags: ["sports"],
+            deleted : false
         },
         {
             id: "2",
@@ -18,7 +19,8 @@ var articleService = (function () {
             createdAt: new Date("2017-03-05"),
             author: "BBC News",
             content: "A revised order has been expected from the White House since the earlier ban was blocked by a federal court.The previous order suspended the entire US refugee resettlement programme and blocked citizens of seven Muslim-majority nations from entering the US.It sparked confusion at airports, as people with valid visas were turned away, and mass protests.President Trump's administration argued that the ban was necessary to keep the US safe from terrorism.",
-            tags: ["politics"]
+            tags: ["politics"],
+            deleted : false
         },
         {
             id: "3",
@@ -34,7 +36,8 @@ var articleService = (function () {
             "They have been rumbling on for more than a month now - and the longer they have gone on, the more Mr Fillon has dug in (seemingly at the expense of his own chances of the presidency)." +
             "He has fought allegations that his Welsh-born wife, Penelope, was paid for a number of years for work that she did not do as his parliamentary assistant." +
             "However Mrs Fillon, who insists she did work for her husband, told French magazine Journal du Dimanche on Saturday that everything was legal and declared.",
-            tags: ["politics"]
+            tags: ["politics"],
+            deleted : false
         },
         {
             id: "4",
@@ -43,7 +46,8 @@ var articleService = (function () {
             createdAt: new Date("2017-02-27"),
             author: "Ivanov ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "turtles"]
+            tags: ["ecology", "turtles"],
+            deleted : false
         },
         {
             id: "5",
@@ -52,7 +56,8 @@ var articleService = (function () {
             createdAt: new Date("2017-02-28"),
             author: "Ivanov Ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "animals"]
+            tags: ["ecology", "animals"],
+            deleted : false
         },
         {
             id: "6",
@@ -61,7 +66,8 @@ var articleService = (function () {
             createdAt: new Date("2027-02-27"),
             author: "Petrov petr",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "animals"]
+            tags: ["ecology", "animals"],
+            deleted : false
         },
         {
             id: "7",
@@ -75,7 +81,8 @@ var articleService = (function () {
             "The US Court of Appeals for the 4th Circuit originally ruled in Mr Grimm's favour in April last year." +
             "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights." +
             "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
-            tags: ["ecology", "people", "society"]
+            tags: ["ecology", "people", "society"],
+            deleted : false
         },
         {
             id: "8",
@@ -84,7 +91,8 @@ var articleService = (function () {
             createdAt: new Date("2027-02-27"),
             author: "Petrov petr",
             content: "video",
-            tags: ["people"]
+            tags: ["people"],
+            deleted : false
         },
         {
             id: "9",
@@ -96,7 +104,8 @@ var articleService = (function () {
             "Its report found that, for most ethnic groups, men earned more than women." +
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "10",
@@ -108,7 +117,8 @@ var articleService = (function () {
             "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said." +
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "11",
@@ -120,7 +130,8 @@ var articleService = (function () {
             "The man's brother and sister have been arrested on charges of abducting and murdering the girl." +
             "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said." +
             "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "12",
@@ -132,7 +143,8 @@ var articleService = (function () {
             "Its report found that, for most ethnic groups, men earned more than women." +
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "13",
@@ -144,7 +156,8 @@ var articleService = (function () {
             "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said." +
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "14",
@@ -156,16 +169,8 @@ var articleService = (function () {
             "The man's brother and sister have been arrested on charges of abducting and murdering the girl." +
             "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said." +
             "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
-            tags: ["people", "society", "murder"]
-        },
-        {
-            id: "14",
-            title: "The turtle who ate 1,000 coins",
-            summary: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            createdAt: new Date("2017-02-27"),
-            author: "Ivanov",
-            content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "turtles"]
+            tags: ["people", "society", "murder"],
+            deleted : false
         },
         {
             id: "15",
@@ -174,7 +179,8 @@ var articleService = (function () {
             createdAt: new Date("2017-02-28"),
             author: "Ivanov Ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "animals"]
+            tags: ["ecology", "animals"],
+            deleted : false
         },
         {
             id: "16",
@@ -183,7 +189,8 @@ var articleService = (function () {
             createdAt: new Date("2027-02-27"),
             author: "Dima Sidorov",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-            tags: ["ecology", "animals"]
+            tags: ["ecology", "animals"],
+            deleted : false
         },
         {
             id: "17",
@@ -197,7 +204,8 @@ var articleService = (function () {
             "The US Court of Appeals for the 4th Circuit originally ruled in Mr Grimm's favour in April last year." +
             "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights." +
             "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
-            tags: ["ecology", "people", "society"]
+            tags: ["ecology", "people", "society"],
+            deleted : false
         },
         {
             id: "18",
@@ -206,7 +214,8 @@ var articleService = (function () {
             createdAt: new Date("2027-02-27"),
             author: "Petrov petr",
             content: "video",
-            tags: ["people"]
+            tags: ["people"],
+            deleted : false
         },
         {
             id: "19",
@@ -218,7 +227,8 @@ var articleService = (function () {
             "Its report found that, for most ethnic groups, men earned more than women." +
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         },
         {
             id: "20",
@@ -230,9 +240,15 @@ var articleService = (function () {
             "He battered them to death with a crowbar at their home in Nantes, local prosecutor Pierre Sennes said." +
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
-            tags: ["people", "society"]
+            tags: ["people", "society"],
+            deleted : false
         }
     ];
+
+    if(!localStorage.getItem("allArticles")){
+        articles = JSON.stringify(articles);
+        localStorage.setItem("allArticles", articles);
+    }
 
     var filterConfig = {
         title: undefined,
@@ -240,7 +256,7 @@ var articleService = (function () {
         createdAfter: undefined,
         createdBefore: undefined,
         tags: undefined
-    }
+    };
 
     var tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
 
@@ -248,6 +264,7 @@ var articleService = (function () {
         filterConfig = fc || filterConfig;
         skip = skip || 0;
         top = top || 10;
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         articles=articles.sort(compareDates);
         var arr = [];
         for (var i = skip; i < articles.length && top > 0; i++) {
@@ -258,10 +275,12 @@ var articleService = (function () {
                 }
             }
         }
+        localStorage.setItem("articles", arr);
         return arr.sort(compareDates);
     }
 
     function getArticle(id) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         for (var i = 0; i < articles.length; i++) {
             if (id === articles[i].id) {
                 return articles[i];
@@ -280,21 +299,32 @@ var articleService = (function () {
     }
 
     function validateId(id) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         for(var i=0;i<articles.length;i++){
-            if(articles[i].id == id) return false;
+            if(articles[i].id == id) {
+                return false;
+            }
         }
         return true;
     }
 
     function addArticle(article) {
-        for (var i = 0; i < article.length; i++) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
+        localStorage.setItem("size", articles.length);
+        article = article || JSON.parse(localStorage.getItem("articleTemp"));
+        for (var i = 0; i < tags.length; i++) {
             if (tags.indexOf(article.tags[i]) === -1) {
                 article.tags.splice(i, 1);
             }
         }
+        article.id = localStorage.getItem("size");
+        article.id++;
+        console.log(article.id);
         if (validateArticle(article) && validateId(article.id)) {
             article.id = (articles.length + 1).toString();
             articles.push(article);
+            localStorage.setItem("size", article.id);
+            localStorage.setItem("allArticles", JSON.stringify(articles));
             return true;
         }
         else {
@@ -303,28 +333,33 @@ var articleService = (function () {
     }
 
     function editArticle(id, article) {
-        var res = getArticle(id);
-        if (validateArticle(res)) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
+        article = article || JSON.parse(localStorage.getItem("articleTemp"));
+        if (validateArticle(articles[id-1])) {
             if (article.title) {
-                res.title = article.title;
+                articles[id-1].title = article.title;
             }
             if (article.summary) {
-                res.summary = article.summary;
+                articles[id-1].summary = article.summary;
             }
             if (article.content) {
-                res.content = article.content;
+                articles[id-1].content = article.content;
             }
             if (article.tags) {
-                res.tags = article.tags;
+                articles[id-1].tags = article.tags;
             }
+            localStorage.setItem("allArticles",JSON.stringify(articles));
             return true;
         }
         return false;
     }
 
     function removeArticle(id) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         if (articles[id - 1]) {
+            articles[id-1].deleted = true;
             articles.splice(id - 1, 1);
+            localStorage.setItem("allArticles",JSON.stringify(articles));
             return true;
         }
         return false;
@@ -390,12 +425,20 @@ var articleService = (function () {
     }
 
     function getArticlesLength(fc) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         if(!fc){
             return articles.length;
         }
         else{
             return getArticles(0,articles.length,fc).length;
         }
+    }
+
+    function parseDate(key, value){
+        if (key == 'createdAt'){
+            return new Date(value);
+        }
+        return value;
     }
 
     return {
@@ -409,6 +452,7 @@ var articleService = (function () {
         addTag: addTag,
         removeTag: removeTag,
         getArticlesLength: getArticlesLength,
+        parseDate: parseDate,
         filterConfig: filterConfig
     }
 

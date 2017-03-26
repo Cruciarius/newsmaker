@@ -58,6 +58,9 @@ var showNewsButton = document.getElementById("show-10-news");
 var showArticle = document.querySelector(".News");
 var toMain = document.getElementById("to-main");
 var changeArticle = document.getElementById("changeArticle");
+var apply = document.getElementById("apply");
+var remove = document.getElementById("removeArticle");
+var log = document.getElementById("authorisation");
 
 function handleClickShowMore(){
     articleService.filterConfig.author = author.value;
@@ -79,15 +82,35 @@ function goToArticlePage(event){
     location.href="article.html";
     localStorage.setItem("id",id);
 }
+function handleApply() {
+    ACDomService.ACArticle();
+    localStorage.removeItem("changingArticle");
+    location.href="article.html";
+}
 
+function handleRemove() {
+    localStorage.setItem("deleted",localStorage.getItem("id"));
+    articleService.removeArticle(localStorage.getItem("deleted"));
+    location.href = "index.html";
+}
+function login() {
+    if(loginService.log()){
+        location.href = "index.html";
+    }
+    else{
+        console.log(1);
+        loginName.value = "WRONG USER";
+    }
+}
 function goToMain() {
     location.href = "index.html";
 }
 
 function handleChangeArticle() {
+    localStorage.setItem("changingArticle", localStorage.getItem("id"));
     location.href = "ACarticle.html";
-    localStorage.setItem("changingArticle", articleService.getArticle(localStorage.getItem("id")));
 }
+
 
 function handleClickLogIn() {
     location.href="autorisation.html";
@@ -110,4 +133,13 @@ if(showArticle){
 }
 if(changeArticle){
     changeArticle.addEventListener("click", handleChangeArticle);
+}
+if(apply){
+    apply.addEventListener("click", handleApply);
+}
+if(remove){
+    remove.addEventListener("click", handleRemove);
+}
+if(log){
+    log.addEventListener("click", login);
 }

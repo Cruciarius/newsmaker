@@ -4,8 +4,7 @@ var domService = (function () {
 
     document.addEventListener("DOMContentLoaded", startApp);
 
-    var user = "A";
-    //var user = "null";
+    var user = localStorage.getItem("user") || null;
 
     function startApp() {
         if (user != "null") {

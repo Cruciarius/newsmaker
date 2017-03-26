@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <link type="text/css" href="Styles/styles.css" rel="stylesheet">
     <link type="text/css" href="Styles/errorPageStyles.css" rel="stylesheet">
+    <link type="text/css" href="Styles/changePageStyles.css" rel="stylesheet">
     <style>
     </style>
     <title>
@@ -22,13 +23,13 @@
     </header>
     <div class="main">
         <div class="Big-Block">
-            <form name="Changing-Name" class="input" ><input type = "text" placeholder="New name"></form>
-            author date id
-            <textarea name="Changing-Short-Description" class="input"cols="110" rows="5" placeholder = "New description"></textarea>
-            <textarea name="Changing-Article-Text" class="input" placeholder="New article text here" cols="110" rows="15" ></textarea>
-            <form name="Changing-Tags" class="input" ><input type = "text" placeholder = "Tags here"></form>
-            <span class="Wide-Space"><button class="Grey-Button">Apply</button>
-               <button class="Grey-Button">To Main Page</button></span>
+            <input id="ChangingName" class="input" placeholder="New name" type = "text"></input>
+            <span id = "info"></span>
+            <textarea class="small-text-area" id="ChangingShortDescription" class="input" placeholder = "New description"></textarea>
+            <textarea class="big-text-area" id="ChangingArticleText" class="input" placeholder="New article text here"></textarea>
+            <input id="ChangingTags" class="input" type = "text" placeholder = "Tags here" ></input>
+            <span class="Wide-Space"><button class="Grey-Button" id="apply">Apply</button>
+               <button class="Grey-Button" id="to-main">To Main Page</button></span>
         </div>
     </div>
     <footer>
@@ -41,5 +42,8 @@
         </div>
     </footer>
 </div>
+<script src="Scripts/script.js"></script>
+<script src="Scripts/events.js"></script>
+<script src="Scripts/ACArticleScript.js"></script>
 </body>
 </html>

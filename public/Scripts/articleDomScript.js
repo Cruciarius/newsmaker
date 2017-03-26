@@ -1,8 +1,7 @@
 var articleDomService = (function () {
     document.addEventListener("DOMContentLoaded", startApp);
     var id = localStorage.getItem("id");
-    var user = "A";
-    //var user = "null";
+    var user = localStorage.getItem("user") || null;
 
     function startApp() {
         if (user != "null") {
@@ -14,7 +13,7 @@ var articleDomService = (function () {
             document.getElementById("add-news").addEventListener("click",handleAddNews);
         }
         else guest();
-        showArticle(articleService.getArticle(id));
+        showArticle(articleService.getArticle(id.toString()));
     }
 
     function guest() {
