@@ -1,12 +1,5 @@
 "use strict";
 
-var searchButton = document.getElementById("search-button");
-var showNewsButton = document.getElementById("show-10-news");
-
-function handleClickShowTen() {
-    pagination();
-}
-
 var pagination = (function () {
     var TOTAL;
     var PER_PAGE = 10;
@@ -29,7 +22,7 @@ var pagination = (function () {
 
     function handleShowMoreClick() {
         var paginationParams = nextPage();
-        SHOW_MORE_CALLBACK(paginationParams.skip, paginationParams.top);
+        SHOW_MORE_CALLBACK(paginationParams.skip, paginationParams.top, articleService.filterConfig);
     }
 
     function getTotalPages() {
@@ -60,12 +53,40 @@ var pagination = (function () {
         init: init
     }
 }());
+var searchButton = document.getElementById("search-button");
+var showNewsButton = document.getElementById("show-10-news");
+var showArticle = document.querySelector(".News");
+var toMain = document.getElementById("to-main");
+var changeArticle = document.getElementById("changeArticle");
 
-function handleClickSearch(){
+function handleClickShowMore(){
     articleService.filterConfig.author = author.value;
-    articleService.filterConfig.createdAfter = new Date(fromDate.value);
-    articleService.filterConfig.createdBefore = new Date(toDate.value);
-    domService.getArticles(0,10,articleService.filterConfig);
+    if(fromDate.value && toDate.value){
+        articleService.filterConfig.createdAfter = new Date(fromDate.value);
+        articleService.filterConfig.createdBefore = new Date(toDate.value);
+    }
+    var total = articleService.getArticlesLength(articleService.filterConfig);
+    var paginationParams = pagination.init(total, domService.getArticles);
+    console.log(total);
+    domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
+}
+
+function goToArticlePage(event){
+    if (event.target.className !== "Name") {
+        return;
+    }
+    var id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
+    location.href="article.html";
+    localStorage.setItem("id",id);
+}
+
+function goToMain() {
+    location.href = "index.html";
+}
+
+function handleChangeArticle() {
+    location.href = "ACarticle.html";
+    localStorage.setItem("changingArticle", articleService.getArticle(localStorage.getItem("id")));
 }
 
 function handleClickLogIn() {
@@ -73,8 +94,20 @@ function handleClickLogIn() {
 }
 
 function handleAddNews() {
-    location.href="Add_Change article.html";
+    location.href="ACarticle.html";
 }
-
-showNewsButton.addEventListener("click", handleClickShowTen);
-searchButton.addEventListener("click", handleClickSearch);
+if(showNewsButton){
+    showNewsButton.addEventListener("click", handleClickShowMore);
+}
+if(searchButton){
+    searchButton.addEventListener("click", handleClickShowMore);
+}
+if(toMain){
+    toMain.addEventListener("click", goToMain);
+}
+if(showArticle){
+    showArticle.addEventListener("click", goToArticlePage);
+}
+if(changeArticle){
+    changeArticle.addEventListener("click", handleChangeArticle);
+}

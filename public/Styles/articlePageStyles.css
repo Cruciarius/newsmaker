@@ -1,0 +1,51 @@
+
+.Big-Block {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items:center ;
+    color: #00d0ff;
+    background-color: #ebebeb;
+    width: 75%;
+    height: 50%;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 2vw;
+}
+.article{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    height: 90%;
+}
+.Regular-Text {
+    font-weight: lighter;
+    overflow: auto;
+    width: 90%;
+    height: 50%;
+}
+
+.Small-Text {
+    font-weight: 400;
+    text-align: end;
+    font-variant: small-caps;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+}
+.image {
+    margin-right: 0.5em;
+    width: 18.5%;
+    height: 25%;
+}
+.Wide-Space{
+    margin-top: 2%;
+    margin-bottom: 5.5%;
+}
+h1{
+    text-align: center;
+    color: #00d0ff;
+}

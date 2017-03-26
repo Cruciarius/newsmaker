@@ -201,6 +201,7 @@ footer {
 
 .Name:hover {
     color: #007d99;
+    cursor: pointer;
 }
 
 .Small-Text {

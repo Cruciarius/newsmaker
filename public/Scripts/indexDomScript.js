@@ -17,7 +17,6 @@ var domService = (function () {
             document.getElementById("add-news").addEventListener("click",handleAddNews);
         }
         else guest();
-
         var total = articleService.getArticlesLength();
         var paginationParams = pagination.init(total, getArticles);
         getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
@@ -109,7 +108,7 @@ var domService = (function () {
         container.innerHTML =
             '<div class="News-Box">\
             <div class="Text-Box">\
-            <a href="index.html" class="Name">' + article.title + '</a>\
+            <div class="Name">' + article.title + '</div>\
         <span hidden="true">' + article.id + '</span>\
         <div class="Small-Text"><span>' + article.author + ',  </span><span>' + article.createdAt.toLocaleDateString() + '</span></div>\
         <div class="Regular-Text">' + article.summary + '</div>\

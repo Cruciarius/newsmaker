@@ -248,6 +248,7 @@ var articleService = (function () {
         filterConfig = fc || filterConfig;
         skip = skip || 0;
         top = top || 10;
+        articles=articles.sort(compareDates);
         var arr = [];
         for (var i = skip; i < articles.length && top > 0; i++) {
             if (isSearched(articles[i])) {
@@ -388,8 +389,13 @@ var articleService = (function () {
         return true;
     }
 
-    function getArticlesLength() {
-        return articles.length;
+    function getArticlesLength(fc) {
+        if(!fc){
+            return articles.length;
+        }
+        else{
+            return getArticles(0,articles.length,fc).length;
+        }
     }
 
     return {
