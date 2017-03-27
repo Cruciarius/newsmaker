@@ -10,7 +10,7 @@ var articleService = (function () {
             author: "Иванов Иван",
             content: "Гости создали больше опасных моментов и в два раза перебросали минчан, но «зубры» на этот раз очень эффективно использовали свои моменты.",
             tags: ["sports"],
-            deleted : false
+            deleted: false
         },
         {
             id: "2",
@@ -20,7 +20,7 @@ var articleService = (function () {
             author: "BBC News",
             content: "A revised order has been expected from the White House since the earlier ban was blocked by a federal court.The previous order suspended the entire US refugee resettlement programme and blocked citizens of seven Muslim-majority nations from entering the US.It sparked confusion at airports, as people with valid visas were turned away, and mass protests.President Trump's administration argued that the ban was necessary to keep the US safe from terrorism.",
             tags: ["politics"],
-            deleted : false
+            deleted: false
         },
         {
             id: "3",
@@ -37,7 +37,7 @@ var articleService = (function () {
             "He has fought allegations that his Welsh-born wife, Penelope, was paid for a number of years for work that she did not do as his parliamentary assistant." +
             "However Mrs Fillon, who insists she did work for her husband, told French magazine Journal du Dimanche on Saturday that everything was legal and declared.",
             tags: ["politics"],
-            deleted : false
+            deleted: false
         },
         {
             id: "4",
@@ -47,7 +47,7 @@ var articleService = (function () {
             author: "Ivanov ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
             tags: ["ecology", "turtles"],
-            deleted : false
+            deleted: false
         },
         {
             id: "5",
@@ -57,7 +57,7 @@ var articleService = (function () {
             author: "Ivanov Ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
             tags: ["ecology", "animals"],
-            deleted : false
+            deleted: false
         },
         {
             id: "6",
@@ -67,7 +67,7 @@ var articleService = (function () {
             author: "Petrov petr",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
             tags: ["ecology", "animals"],
-            deleted : false
+            deleted: false
         },
         {
             id: "7",
@@ -82,7 +82,7 @@ var articleService = (function () {
             "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights." +
             "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
             tags: ["ecology", "people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "8",
@@ -92,7 +92,7 @@ var articleService = (function () {
             author: "Petrov petr",
             content: "video",
             tags: ["people"],
-            deleted : false
+            deleted: false
         },
         {
             id: "9",
@@ -105,7 +105,7 @@ var articleService = (function () {
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "10",
@@ -118,7 +118,7 @@ var articleService = (function () {
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "11",
@@ -131,7 +131,7 @@ var articleService = (function () {
             "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said." +
             "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "12",
@@ -144,7 +144,7 @@ var articleService = (function () {
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "13",
@@ -157,7 +157,7 @@ var articleService = (function () {
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "14",
@@ -170,7 +170,7 @@ var articleService = (function () {
             "The alleged sorcerer told them it was the only way to undo black magic affecting their sibling, police said." +
             "A 17-year-old boy has also been arrested for helping to abduct the girl, police said.",
             tags: ["people", "society", "murder"],
-            deleted : false
+            deleted: false
         },
         {
             id: "15",
@@ -180,7 +180,7 @@ var articleService = (function () {
             author: "Ivanov Ivan",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
             tags: ["ecology", "animals"],
-            deleted : false
+            deleted: false
         },
         {
             id: "16",
@@ -190,7 +190,7 @@ var articleService = (function () {
             author: "Dima Sidorov",
             content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
             tags: ["ecology", "animals"],
-            deleted : false
+            deleted: false
         },
         {
             id: "17",
@@ -205,7 +205,7 @@ var articleService = (function () {
             "It deferred to then-president Barack Obama's directive on the issue - which said that federal law banning sex discrimination in public schools extended to protecting transgender bathroom rights." +
             "The supreme justices later accepted a petition from Gloucester County, Virginia, to hear an appeal - in what would have been the first Supreme Court ruling on transgender rights.",
             tags: ["ecology", "people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "18",
@@ -215,7 +215,7 @@ var articleService = (function () {
             author: "Petrov petr",
             content: "video",
             tags: ["people"],
-            deleted : false
+            deleted: false
         },
         {
             id: "19",
@@ -228,7 +228,7 @@ var articleService = (function () {
             "It used hourly pay data from the Office for National Statistics (ONS) covering full-time employees in the UK." +
             "The gender pay gap, or the average difference in hourly pay between men and women, currently stands at 13.9% for full-time workers, according to the ONS.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         },
         {
             id: "20",
@@ -241,13 +241,16 @@ var articleService = (function () {
             "Mr Caouissin will be charged and jailed on Monday." +
             "He was arrested in Brest on Sunday along with Mr Troadec's sister Lydie Troadec, his ex-wife.",
             tags: ["people", "society"],
-            deleted : false
+            deleted: false
         }
     ];
 
-    if(!localStorage.getItem("allArticles")){
+    var tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
+
+    if (!localStorage.getItem("allArticles")) {
         articles = JSON.stringify(articles);
         localStorage.setItem("allArticles", articles);
+        localStorage.setItem("allTags", JSON.stringify(tags));
     }
 
     var filterConfig = {
@@ -258,14 +261,12 @@ var articleService = (function () {
         tags: undefined
     };
 
-    var tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
-
     function getArticles(skip, top, fc) {
         filterConfig = fc || filterConfig;
         skip = skip || 0;
         top = top || 10;
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        articles=articles.sort(compareDates);
+        articles = articles.sort(compareDates);
         var arr = [];
         for (var i = skip; i < articles.length && top > 0; i++) {
             if (isSearched(articles[i])) {
@@ -275,7 +276,8 @@ var articleService = (function () {
                 }
             }
         }
-        localStorage.setItem("articles", arr);
+        localStorage.setItem("articles", JSON.stringify(arr.sort(compareDates)));
+        filterConfig = undefined;
         return arr.sort(compareDates);
     }
 
@@ -310,8 +312,8 @@ var articleService = (function () {
 
     function validateId(id) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        for(var i=0;i<articles.length;i++){
-            if(articles[i].id == id) {
+        for (var i = 0; i < articles.length; i++) {
+            if (articles[i].id == id) {
                 return false;
             }
         }
@@ -348,22 +350,22 @@ var articleService = (function () {
         var i = getPosition(id);
         if (validateArticle(articles[i])) {
             if (article.title) {
-               // articles[id-1].title = article.title;
+                // articles[id-1].title = article.title;
                 articles[i].title = article.title;
             }
             if (article.summary) {
-               // articles[id-1].summary = article.summary;
+                // articles[id-1].summary = article.summary;
                 articles[i].summary = article.summary;
             }
             if (article.content) {
-               // articles[id-1].content = article.content;
+                // articles[id-1].content = article.content;
                 articles[i].content = article.content;
             }
             if (article.tags) {
-               // articles[id-1].tags = article.tags;
+                // articles[id-1].tags = article.tags;
                 articles[i].tags = article.tags;
             }
-            localStorage.setItem("allArticles",JSON.stringify(articles));
+            localStorage.setItem("allArticles", JSON.stringify(articles));
             return true;
         }
         return false;
@@ -372,18 +374,18 @@ var articleService = (function () {
     function removeArticle(id) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         /*if (articles[id - 1]) {
-            articles[id-1].deleted = true;
-            articles.splice(id - 1, 1);
-            localStorage.setItem("allArticles",JSON.stringify(articles));
-            return true;
-        }
-        return false;*/
+         articles[id-1].deleted = true;
+         articles.splice(id - 1, 1);
+         localStorage.setItem("allArticles",JSON.stringify(articles));
+         return true;
+         }
+         return false;*/
 
         var i = getPosition(id);
-        if (i !=- 1) {
+        if (i != -1) {
             articles[i].deleted = true;
             articles.splice(i, 1);
-            localStorage.setItem("allArticles",JSON.stringify(articles));
+            localStorage.setItem("allArticles", JSON.stringify(articles));
             return true;
         }
         return false;
@@ -435,11 +437,18 @@ var articleService = (function () {
         return true;
     }
 
+    function find(array, value) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] == value) return i;
+        }
+        return -1;
+    }
+
     function compareTags(element) {
         if (filterConfig.tags) {
-            var filter = filterConfig.tags.split(",");
+            var filter = filterConfig.tags.split(", ");
             for (var i = 0; i < element.tags.length; i++) {
-                if ((filter.indexOf(element.tags[i]) != -1) && element.tags[i] != "") {
+                if ((find(filter, element.tags[i]) != -1) && element.tags[i] != "") {
                     return true;
                 }
             }
@@ -450,16 +459,16 @@ var articleService = (function () {
 
     function getArticlesLength(fc) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        if(!fc){
+        if (!fc) {
             return articles.length;
         }
-        else{
-            return getArticles(0,articles.length,fc).length;
+        else {
+            return getArticles(0, articles.length, fc).length;
         }
     }
 
-    function parseDate(key, value){
-        if (key == 'createdAt'){
+    function parseDate(key, value) {
+        if (key == 'createdAt') {
             return new Date(value);
         }
         return value;

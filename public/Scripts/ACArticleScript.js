@@ -12,10 +12,10 @@ var ACDomService = (function () {
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
             <button class="White-Button" id="log-out">Log Out</button>';
             document.getElementById("log-out").addEventListener("click", guest);
-            document.getElementById("add-news").addEventListener("click",handleAddNews);
+            document.getElementById("add-news").addEventListener("click", handleAddNews);
         }
         else guest();
-        if(localStorage.getItem("changingArticle")){
+        if (localStorage.getItem("changingArticle")) {
             change = true;
             console.log(1);
             createMessage(articleService.getArticle(localStorage.getItem("changingArticle")));
@@ -25,11 +25,11 @@ var ACDomService = (function () {
         }
     }
 
-    function ACArticle(){
+    function ACArticle() {
         var article = {
             id: undefined,
-            author : undefined,
-            createdAt : undefined,
+            author: undefined,
+            createdAt: undefined,
             title: undefined,
             summary: undefined,
             content: undefined,
@@ -39,12 +39,12 @@ var ACDomService = (function () {
         article.summary = ChangingShortDescription.value;
         article.content = ChangingArticleText.value;
         article.tags = ChangingTags.value.split(", ");
-        if(change){
+        if (change) {
             localStorage.setItem("articleTemp", JSON.stringify(article));
             articleService.editArticle(localStorage.getItem("changingArticle"));
             localStorage.setItem("id", JSON.parse((localStorage.getItem("changingArticle")), articleService.parseDate));
         }
-        else{
+        else {
             article.author = user;
             article.createdAt = new Date();
             localStorage.setItem("articleTemp", JSON.stringify(article));
@@ -73,8 +73,8 @@ var ACDomService = (function () {
         document.getElementById("ChangingTags").value = tags;
     }
 
-    return{
-        ACArticle:ACArticle
+    return {
+        ACArticle: ACArticle
     }
 
 }());

@@ -13,9 +13,10 @@ var domService = (function () {
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
             <button class="White-Button" id="log-out">Log Out</button>';
             document.getElementById("log-out").addEventListener("click", guest);
-            document.getElementById("add-news").addEventListener("click",handleAddNews);
+            document.getElementById("add-news").addEventListener("click", handleAddNews);
         }
         else guest();
+        createTagsList();
         var total = articleService.getArticlesLength();
         var paginationParams = pagination.init(total, getArticles);
         getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
@@ -28,9 +29,23 @@ var domService = (function () {
         document.getElementById("log-in").addEventListener("click", handleClickLogIn);
     }
 
+    function createTagsList() {
+        var str = "<option value=''></option>";
+        var tags = JSON.parse(localStorage.getItem("allTags"));
+        for (var i = 0; i < tags.length; i++) {
+            str += "<option value='";
+            str += tags[i];
+            str += "'>";
+            str += tags[i];
+            str += "</option>";
+        }
+        document.getElementById("select").innerHTML = str;
+    }
+
     function getArticles(skip, top, fw) {
         clearPage();
-        var articles = articleService.getArticles(skip, top, fw);
+        articleService.getArticles(skip, top, fw);
+        var articles = JSON.parse(localStorage.getItem("articles"), articleService.parseDate);
         for (var i = 0; i < articles.length; i++) {
             var message = createMessage(articles[i]);
             document.getElementById("News").appendChild(message);

@@ -21,8 +21,14 @@
             <div class="Text-Box">
                 <div class="Name-Filter">
                     Author:
-                    <input name="byAuthor" class="Searching-Field" id="author" type="text" placeholder="Search by author">
-                    </input>
+                    <select name="byAuthor" class="Searching-Field" id="author" type="text" placeholder="Search by author">
+                        <option value=''></option>
+                        <option value="bbc">BBC</option>
+                        <option value="Petrov petr">Petrov Petr</option>
+                        <option value="BBC News">BBC News</option>
+                        <option value="Иванов Иван">Иванов Иван</option>
+                        <option value="Ivanov ivan">Ivanov Ivan</option>
+                    </select>
                 </div>
                 <div class="Name-Filter">
                     Date:
@@ -33,7 +39,8 @@
                 </div>
                 <div class="Name-Filter">
                     Tags:
-                    <input name="byTags" class="Searching-Field" type="text" placeholder="Search by tags"></input>
+                    <select multiple size="3" id="select" name="byTags"  type="text" placeholder="Search by tags">
+                    </select>
                 </div>
                 <div class="Name-Filter-Tags">Popular tags:<br>
                     <a href="tag" class="Tag">tag1</a><br>

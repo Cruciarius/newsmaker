@@ -62,41 +62,59 @@ var apply = document.getElementById("apply");
 var remove = document.getElementById("removeArticle");
 var log = document.getElementById("authorisation");
 
-function handleClickShowMore(){
+function handleClickShowMore() {
     articleService.filterConfig.author = author.value;
-    if(fromDate.value && toDate.value){
+    if (fromDate.value && toDate.value) {
         articleService.filterConfig.createdAfter = new Date(fromDate.value);
         articleService.filterConfig.createdBefore = new Date(toDate.value);
+    }
+    if (select.value) {
+        var options = [].slice.call(select.options);
+        articleService.filterConfig.tags = options
+            .filter(function (option) {
+                return option.selected;
+            })
+            .map(function (option) {
+                return option.value;
+            })
+            .join(', ');
+        select.value = undefined;
+    }
+    else {
+        articleService.filterConfig.author = undefined;
+        articleService.filterConfig.createdAfter = undefined;
+        articleService.filterConfig.createdBefore = undefined;
+        articleService.filterConfig.tags = undefined;
     }
     var total = articleService.getArticlesLength(articleService.filterConfig);
     var paginationParams = pagination.init(total, domService.getArticles);
     domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
 }
 
-function goToArticlePage(event){
+function goToArticlePage(event) {
     if (event.target.className !== "Name") {
         return;
     }
     var id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
-    location.href="article.html";
-    localStorage.setItem("id",id);
+    location.href = "article.html";
+    localStorage.setItem("id", id);
 }
 function handleApply() {
     ACDomService.ACArticle();
     localStorage.removeItem("changingArticle");
-    location.href="article.html";
+    location.href = "article.html";
 }
 
 function handleRemove() {
-    localStorage.setItem("deleted",localStorage.getItem("id"));
+    localStorage.setItem("deleted", localStorage.getItem("id"));
     articleService.removeArticle(localStorage.getItem("deleted"));
     location.href = "index.html";
 }
 function login() {
-    if(loginService.log()){
+    if (loginService.log()) {
         location.href = "index.html";
     }
-    else{
+    else {
         console.log(1);
         loginName.value = "WRONG USER";
     }
@@ -112,33 +130,33 @@ function handleChangeArticle() {
 
 
 function handleClickLogIn() {
-    location.href="autorisation.html";
+    location.href = "autorisation.html";
 }
 
 function handleAddNews() {
-    location.href="ACarticle.html";
+    location.href = "ACarticle.html";
 }
-if(showNewsButton){
+if (showNewsButton) {
     showNewsButton.addEventListener("click", handleClickShowMore);
 }
-if(searchButton){
+if (searchButton) {
     searchButton.addEventListener("click", handleClickShowMore);
 }
-if(toMain){
+if (toMain) {
     toMain.addEventListener("click", goToMain);
 }
-if(showArticle){
+if (showArticle) {
     showArticle.addEventListener("click", goToArticlePage);
 }
-if(changeArticle){
+if (changeArticle) {
     changeArticle.addEventListener("click", handleChangeArticle);
 }
-if(apply){
+if (apply) {
     apply.addEventListener("click", handleApply);
 }
-if(remove){
+if (remove) {
     remove.addEventListener("click", handleRemove);
 }
-if(log){
+if (log) {
     log.addEventListener("click", login);
 }
