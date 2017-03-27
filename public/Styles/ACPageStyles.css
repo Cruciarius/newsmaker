@@ -11,7 +11,7 @@
     height: 50%;
     font-family: Arial;
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 .article{
     display: flex;
@@ -27,25 +27,25 @@
     width: 90%;
     height: 50%;
 }
-
 .Small-Text {
-    font-weight: 400;
+    font-weight: 100;
     text-align: end;
     font-variant: small-caps;
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
+    margin-bottom: 1.5%;
 }
 .image {
     margin-right: 0.5em;
-    width: 18.5%;
+    width: 12.5%;
     height: 25%;
 }
 .Wide-Space{
     margin-top: 2%;
-    margin-bottom: 5.5%;
+    margin-bottom: 2%;
 }
-h1{
+h2{
     text-align: center;
     color: #00d0ff;
 }

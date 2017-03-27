@@ -4,7 +4,7 @@ var articleDomService = (function () {
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
-        if (user != "null") {
+        if (user != null) {
             document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
             <img src="Images/logo.png" class="image-Logo">Welcome, ' + user + '! </div>\
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
@@ -38,7 +38,7 @@ var articleDomService = (function () {
         }
         container.innerHTML =
             '<div class="article" id=article">\
-            <h1>'+ article.title +'</h1>\
+            <h2>'+ article.title +'</h2>\
         <span hidden="true">' + article.id + '</span>\
         <div class="Small-Text"><span>' + article.author + ',  </span><span>' + article.createdAt.toLocaleDateString() + '</span></div>\
         <img src="Images/05453.gif" class="image">\

@@ -288,6 +288,16 @@ var articleService = (function () {
         }
     }
 
+    function getPosition(id) {
+        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
+        for (var i = 0; i < articles.length; i++) {
+            if (id === articles[i].id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     function validateArticle(article) {
         if (article.id === undefined || article.title === undefined || article.author === undefined || article.summary === undefined || article.createdAt === undefined || article.content === undefined) {
             return false;
@@ -335,18 +345,23 @@ var articleService = (function () {
     function editArticle(id, article) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         article = article || JSON.parse(localStorage.getItem("articleTemp"));
-        if (validateArticle(articles[id-1])) {
+        var i = getPosition(id);
+        if (validateArticle(articles[i])) {
             if (article.title) {
-                articles[id-1].title = article.title;
+               // articles[id-1].title = article.title;
+                articles[i].title = article.title;
             }
             if (article.summary) {
-                articles[id-1].summary = article.summary;
+               // articles[id-1].summary = article.summary;
+                articles[i].summary = article.summary;
             }
             if (article.content) {
-                articles[id-1].content = article.content;
+               // articles[id-1].content = article.content;
+                articles[i].content = article.content;
             }
             if (article.tags) {
-                articles[id-1].tags = article.tags;
+               // articles[id-1].tags = article.tags;
+                articles[i].tags = article.tags;
             }
             localStorage.setItem("allArticles",JSON.stringify(articles));
             return true;
@@ -356,9 +371,18 @@ var articleService = (function () {
 
     function removeArticle(id) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        if (articles[id - 1]) {
+        /*if (articles[id - 1]) {
             articles[id-1].deleted = true;
             articles.splice(id - 1, 1);
+            localStorage.setItem("allArticles",JSON.stringify(articles));
+            return true;
+        }
+        return false;*/
+
+        var i = getPosition(id);
+        if (i !=- 1) {
+            articles[i].deleted = true;
+            articles.splice(i, 1);
             localStorage.setItem("allArticles",JSON.stringify(articles));
             return true;
         }

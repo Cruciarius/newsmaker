@@ -7,7 +7,7 @@ var domService = (function () {
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
-        if (user != "null") {
+        if (user != null) {
             document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
             <img src="Images/logo.png" class="image-Logo">Welcome, ' + user + '! </div>\
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\

@@ -70,7 +70,6 @@ function handleClickShowMore(){
     }
     var total = articleService.getArticlesLength(articleService.filterConfig);
     var paginationParams = pagination.init(total, domService.getArticles);
-    console.log(total);
     domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
 }
 

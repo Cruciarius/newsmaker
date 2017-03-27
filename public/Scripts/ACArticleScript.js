@@ -6,7 +6,7 @@ var ACDomService = (function () {
     var change = false;
 
     function startApp() {
-        if (user != "null") {
+        if (user != null) {
             document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
             <img src="Images/logo.png" class="image-Logo">Welcome, ' + user + '! </div>\
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
@@ -38,7 +38,7 @@ var ACDomService = (function () {
         article.title = ChangingName.value;
         article.summary = ChangingShortDescription.value;
         article.content = ChangingArticleText.value;
-        article.tags = ChangingTags.value.split(",");
+        article.tags = ChangingTags.value.split(", ");
         if(change){
             localStorage.setItem("articleTemp", JSON.stringify(article));
             articleService.editArticle(localStorage.getItem("changingArticle"));
