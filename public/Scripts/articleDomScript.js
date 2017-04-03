@@ -1,3 +1,5 @@
+
+
 var articleDomService = (function () {
     document.addEventListener("DOMContentLoaded", startApp);
     var id = localStorage.getItem("id");
@@ -11,6 +13,9 @@ var articleDomService = (function () {
             <button class="White-Button" id="log-out">Log Out</button>';
             document.getElementById("log-out").addEventListener("click", guest);
             document.getElementById("add-news").addEventListener("click",handleAddNews);
+            /*document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button"  id="changeArticle">Change article</button>\
+            <button class="Grey-Button" id="to-main">To main page</button>\
+            <button class="Grey-Button" id="removeArticle">Remove article</button>\*/
         }
         else guest();
         showArticle(articleService.getArticle(id.toString()));
@@ -20,7 +25,8 @@ var articleDomService = (function () {
         document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
             <img src="Images/logo.png" class="image-Logo">Welcome, guest!</div>\
             <button class="White-Button" id="log-in">Log In</button>';
-        document.getElementById("log-in").addEventListener("click", handleClickLogIn);
+        /*document.getElementById("log-in").addEventListener("click", handleClickLogIn);
+        document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button" id="to-main">To main page</button>';*/
     }
 
     function showArticle(article){
