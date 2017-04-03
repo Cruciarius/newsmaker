@@ -10,19 +10,6 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*let users = [
-    {
-        id: 1,
-        firstName: 'yuri',
-        lastName: 'stsepaniuk',
-    },
-    {
-        id: 2,
-        firstName: 'ilya',
-        lastName: 'grigorik',
-    },
-];*/
-
 let articles = [
     {
         id: "1",
@@ -268,7 +255,7 @@ let articles = [
 ];
 
 for(let i = 1; i < 5000; i++) {
-    aricles.push({
+    articles.push({
         id: i,
         title: `title${i}`,
         summary: `summary${i}`,
@@ -279,83 +266,94 @@ for(let i = 1; i < 5000; i++) {
     });
 }
 
-let tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
-
-app.get("/article", function (req,res) {
+app.get("/articles", function (req,res) {
     if(req.query.id) {
-        return res.json(articles.filter(article => Number(req.query.id) === article.id)[0]);
+        return res.json(articles.filter(article => article.id)[0]);
     }
     res.json(articles);
 });
 
-/*app.get('/user', function (req, res) {
-    if(req.query.id) {
-        return res.json(users.filter(user => Number(req.query.id) === user.id)[0]);
-    }
-    res.json(users);
+app.get("/articles/:id", function (req, res) {
+    res.json(articles.filter(article => article.id)[0]);
 });
 
-app.get('/user/:id', function (req, res) {
-    res.json(users.filter(user => Number(req.params.id) === user.id)[0]);
-});
-
-app.get('/user401/:id', function (req, res) {
+app.get("/articles401/:id", function (req, res) {
     res.status(401).end();
 });
 
-app.get('/user500/:id', function (req, res) {
-    // recursion, max call stack
+app.get("/articles500/:id", function (req, res) {
     (function a(){
         a();
     }());
 
-    res.end(`cool`);
+    res.end(500);
 });
 
-app.post('/user', function (req, res) {
-    let user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        id: users.length
+app.post("/articles", function (req, res) {
+    let article = {
+        title: req.body.title,
+        summary: req.body.summary,
+        createdAt: req.body.createdAt,
+        author: req.body.author,
+        content: req.body.content,
+        tags: req.body.tags,
+        deleted: false,
+        id: articles.length
     };
-    users.push(user);
+    articles.push(article);
 
-    res.json(user);
+    res.json(article);
 });
 
-app.put('/user', function (req, res) {
-    let user = users.filter(user => Number(req.body.id) === user.id)[0];
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
-
-    res.json(user);
+app.put("/articles", function (req, res) {
+    let article = articles.filter(article => article.id)[0];
+    article.title = req.body.title;
+        article.summary = req.body.summary;
+        article.createdAt = req.body.createdAt;
+        article.author = req.body.author;
+        article.content = req.body.content;
+        article.tags = req.body.tags;
+        res.json(article);
 });
 
-app.delete('/user', function (req, res) {
+app.delete('/articles', function (req, res) {
     let id = req.query.id || req.body.id;
-    users = users.filter(user => Number(id) !== user.id);
+    articles = articles.filter(article => Number(id) !== article.id);
     res.json({idWasRemoved: Number(id)});
 });
 
-app.delete('/user/:id', function (req, res) {
+app.delete('/articles/:id', function (req, res) {
     let id = req.params.id;
-    users = users.filter(user => Number(id) !== user.id);
+    articles = articles.filter(article => Number(id) !== article.id);
     res.json({idWasRemoved: Number(id)});
 });
 
-app.patch('/user', function (req, res) {
-    let user = users.filter(user => Number(req.body.id) === user.id)[0];
+app.patch('/articles', function (req, res) {
+    let article = articles.filter(article => Number(req.body.id) === article.id)[0];
 
-    if (req.body.firstName) {
-        user.firstName = req.body.firstName;
+    if (req.body.title) {
+        article.title = req.body.title;
     }
 
-    if (req.body.lastName) {
-        user.lastName = req.body.lastName;
+    if (req.body.summary) {
+        article.summary = req.body.summary;
+    }
+    if (req.body.createdAt) {
+        article.createdAt = req.body.createdAt;
     }
 
-    res.json(user);
-});*/
+    if (req.body.author) {
+        article.author = req.body.author;
+    }
+    if (req.body.content) {
+        article.content = req.body.content;
+    }
+
+    if (req.body.tags) {
+        article.tags = req.body.tags;
+    }
+    res.json(article);
+});
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));

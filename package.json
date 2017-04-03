@@ -1,10 +1,24 @@
 {
-  "name": "MyStaticServer",
-  "version": "0.0.1",
-  "dependencies": {
-    "express": "3.3.x"
+  "name": "newsmaker",
+  "version": "1.0.0",
+  "description": "my news site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "babel": "^6.23.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cruciarius/newsmaker.git"
+  },
+  "author": "Cruciarius",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cruciarius/newsmaker/issues"
+  },
+  "homepage": "https://github.com/Cruciarius/newsmaker#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "expres": "0.0.5",
+    "express": "^4.15.2"
   }
 }
