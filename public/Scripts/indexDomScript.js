@@ -1,4 +1,5 @@
 "use strict";
+var mkay = true;
 
 var domService = (function () {
 
@@ -18,10 +19,7 @@ var domService = (function () {
         }
         else guest();
         createTagsList();
-        articleService.countArticles();
-        console.log(paginationParams.skip);
-        if(pagination.isFirst){
-            pagination.isFirst = false;
+        /*articleService.countArticles();
             let oReq = new XMLHttpRequest();
             oReq.open("GET", "/length");
             oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -32,8 +30,8 @@ var domService = (function () {
                     let paginationParams = pagination.init(total.value, getArticles);
                     getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
                 }
-            };
-        }
+            };*/
+        handleClickShowMore();
     }
 
     function guest() {

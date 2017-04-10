@@ -6,7 +6,6 @@ var pagination = (function () {
     var CURRENT_PAGE = 1;
     var SHOW_MORE_BUTTON;
     var SHOW_MORE_CALLBACK;
-    var isFirst = true;
 
     function init(total, showMoreCb) {
         TOTAL = total;
@@ -51,7 +50,6 @@ var pagination = (function () {
 
     return {
         init: init,
-        isFirst: isFirst
     }
 }());
 var searchButton = document.getElementById("search-button");
@@ -95,10 +93,11 @@ function handleClickShowMore() {
         oReq.onreadystatechange = function () {
             if (oReq.readyState == 4) {
                 let total = JSON.parse(oReq.responseText);
-                let paginationParams = pagination.init(total.value, domService.getArticles);
+                let paginationParams = pagination.init(total.value, articleService.getArticles);
                 domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
             }
         };
+
 }
 
 function goToArticlePage(event) {

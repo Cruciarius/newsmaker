@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 
-app.set('port', (process.env.PORT || 5000));
+app.set("port", (process.env.PORT || 5000));
 
 app.use(express.static("public"));
 
@@ -64,16 +64,6 @@ let articles = [
         summary: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
         createdAt: new Date("2017-02-28"),
         author: "Ivanov Ivan",
-        content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-        tags: ["ecology", "animals"],
-        deleted: false
-    },
-    {
-        id: "6",
-        title: "The turtle who ate 1,000 coins",
-        summary: "",
-        createdAt: new Date("2027-02-27"),
-        author: "Petrov petr",
         content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
         tags: ["ecology", "animals"],
         deleted: false
@@ -192,16 +182,6 @@ let articles = [
         deleted: false
     },
     {
-        id: "16",
-        title: "The turtle who ate 1,000 coins",
-        summary: "",
-        createdAt: new Date("2027-02-27"),
-        author: "Dima Sidorov",
-        content: "Bank the turtle is recovering in Thailand after tourists threw money into his pond for luck.",
-        tags: ["ecology", "animals"],
-        deleted: false
-    },
-    {
         id: "17",
         title: "Supreme Court drops landmark transgender school bathroom case",
         summary: "The US Supreme Court has reversed its decision to hear a landmark case on transgender bathroom rights.",
@@ -254,12 +234,18 @@ let articles = [
     }
 ];
 
-for(let i = 1; i < 5000; i++) {
+let results = [];
+
+let length = {
+    value: 0,
+};
+
+for(let i = 1; i < 5; i++) {
     articles.push({
         id: i,
         title: `title${i}`,
         summary: `summary${i}`,
-        createdAt: `createdAt${i}`,
+        createdAt: new Date("2057-02-27"),
         author: `author${i}`,
         content:  `content${i}`,
         tags: `tags${i}`,
@@ -271,6 +257,25 @@ app.get("/articles", function (req,res) {
         return res.json(articles.filter(article => article.id)[0]);
     }
     res.json(articles);
+});
+
+app.get("/length", function (req,res) {
+    if(length.value == 0){
+        res.json(articles.length);
+    }
+    res.json(length.value);
+});
+
+app.put("/length", function (req,res) {
+    length.value = req.body;
+    res.json(length);
+});
+
+app.get("/results", function (req,res) {
+    if(req.query.id) {
+        return res.json(results.filter(result => result.id)[0]);
+    }
+    res.json(results);
 });
 
 app.get("/articles/:id", function (req, res) {
@@ -301,35 +306,53 @@ app.post("/articles", function (req, res) {
         id: articles.length
     };
     articles.push(article);
+    res.json(article);
+});
 
+app.post("/results", function (req, res) {
+    let article = {
+        title: req.body.title,
+        summary: req.body.summary,
+        createdAt: req.body.createdAt,
+        author: req.body.author,
+        content: req.body.content,
+        tags: req.body.tags,
+        deleted: false,
+        id: results.length
+    };
+    results.push(article);
     res.json(article);
 });
 
 app.put("/articles", function (req, res) {
-    let article = articles.filter(article => article.id)[0];
-    article.title = req.body.title;
-        article.summary = req.body.summary;
-        article.createdAt = req.body.createdAt;
-        article.author = req.body.author;
-        article.content = req.body.content;
-        article.tags = req.body.tags;
-        res.json(article);
+    articles = req.body;
+    res.json(articles);
 });
 
-app.delete('/articles', function (req, res) {
+app.put("/results", function (req, res) {
+    results = req.body;
+    res.json(results);
+});
+
+app.delete("/articles", function (req, res) {
     let id = req.query.id || req.body.id;
-    articles = articles.filter(article => Number(id) !== article.id);
+    articles = articles.filter(article => id != article.id);
     res.json({idWasRemoved: Number(id)});
 });
 
-app.delete('/articles/:id', function (req, res) {
+app.delete("/results", function (req, res) {
+    results = [];
+    res.json(results);
+});
+
+app.delete("/articles/:id", function (req, res) {
     let id = req.params.id;
-    articles = articles.filter(article => Number(id) !== article.id);
+    articles = articles.filter(article => id != article.id);
     res.json({idWasRemoved: Number(id)});
 });
 
-app.patch('/articles', function (req, res) {
-    let article = articles.filter(article => Number(req.body.id) === article.id)[0];
+app.patch("/articles", function (req, res) {
+    let article = articles.filter(article => id == article.id)[0];
 
     if (req.body.title) {
         article.title = req.body.title;
@@ -355,6 +378,6 @@ app.patch('/articles', function (req, res) {
     res.json(article);
 });
 
-app.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
+app.listen(app.get("port"), function() {
+    console.log("Node app is running on port", app.get("port"));
 });
