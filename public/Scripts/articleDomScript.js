@@ -1,8 +1,10 @@
 
 
 var articleDomService = (function () {
+
     document.addEventListener("DOMContentLoaded", startApp);
-    var id = localStorage.getItem("id");
+
+    let id = window.id;
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
@@ -11,22 +13,30 @@ var articleDomService = (function () {
             <img src="Images/logo.png" class="image-Logo">Welcome, ' + user + '! </div>\
             <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
             <button class="White-Button" id="log-out">Log Out</button>';
+            document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button"  id="changeArticle">Change article</button>\
+            <button class="Grey-Button" id="to-main">To main page</button>\
+            <button class="Grey-Button" id="removeArticle">Remove article</button>';
             document.getElementById("log-out").addEventListener("click", guest);
             document.getElementById("add-news").addEventListener("click",handleAddNews);
-            /*document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button"  id="changeArticle">Change article</button>\
-            <button class="Grey-Button" id="to-main">To main page</button>\
-            <button class="Grey-Button" id="removeArticle">Remove article</button>\*/
+            document.getElementById("changeArticle").addEventListener("click", handleChangeArticle);
+            document.getElementById("to-main").addEventListener("click", goToMain);
+            document.getElementById("removeArticle").addEventListener("click", handleRemove);
         }
         else guest();
-        showArticle(articleService.getArticle(id.toString()));
+        let oReq = request.createGetRequest("/articles/:"+id);
+        oReq.onreadystatechange=function(){
+            let article = JSON.parse(oReq.responseText,articleService.parseDate);
+            showArticle(article);
+        }
     }
 
     function guest() {
         document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
             <img src="Images/logo.png" class="image-Logo">Welcome, guest!</div>\
             <button class="White-Button" id="log-in">Log In</button>';
-        /*document.getElementById("log-in").addEventListener("click", handleClickLogIn);
-        document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button" id="to-main">To main page</button>';*/
+        document.getElementById("log-in").addEventListener("click", handleClickLogIn);
+        document.getElementsByClassName("Wide-Space")[0].innerHTML = '<button class="Grey-Button" id="to-main">To main page</button>';
+        document.getElementById("to-main").addEventListener("click", goToMain);
     }
 
     function showArticle(article){

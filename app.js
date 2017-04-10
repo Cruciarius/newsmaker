@@ -234,10 +234,13 @@ let articles = [
     }
 ];
 
-let results = [];
-
-let length = {
-    value: 0,
+let filterConfig = {
+    skip:undefined,
+    top: undefined,
+    author: undefined,
+    createdAfter: undefined,
+    createdBefore: undefined,
+    tags: undefined
 };
 
 for(let i = 1; i < 5; i++) {
@@ -252,34 +255,46 @@ for(let i = 1; i < 5; i++) {
     });
 }
 
+let response = {
+    articles:undefined,
+    length:undefined,
+    id:undefined
+};
+
+function validateArticles(articles,fc){
+    filterConfig = fc || filterConfig;
+    articles = articles.sort(compareDates);
+    let arr = [];
+    for (let i = filterConfig.skip; i < articles.length && filterConfig.top>0; i++) {
+        if (isSearched(articles[i])) {
+            if (validateArticle(articles[i])) {
+                arr.push(articles[i]);
+                filterConfig.top--;
+            }
+        }
+    }
+    return arr;
+}
+
 app.get("/articles", function (req,res) {
-    if(req.query.id) {
-        return res.json(articles.filter(article => article.id)[0]);
-    }
-    res.json(articles);
-});
-
-app.get("/length", function (req,res) {
-    if(length.value == 0){
-        res.json(articles.length);
-    }
-    res.json(length.value);
-});
-
-app.put("/length", function (req,res) {
-    length.value = req.body;
-    res.json(length);
-});
-
-app.get("/results", function (req,res) {
-    if(req.query.id) {
-        return res.json(results.filter(result => result.id)[0]);
-    }
-    res.json(results);
+    filterConfig.skip = req.query.skip || 0;
+    filterConfig.top = req.query.top || articles.length;
+    filterConfig.author = req.query.author;
+    filterConfig.createdAfter = req.query.createdAfter;
+    filterConfig.createdBefore = req.query.createdBefore;
+    filterConfig.tags = req.query.tags;
+    response.articles = validateArticles(articles,filterConfig);
+    response.length = response.articles.length;
+    res.json(response);
 });
 
 app.get("/articles/:id", function (req, res) {
+    response.id = req.params.id;
     res.json(articles.filter(article => article.id)[0]);
+});
+
+app.get("/id", function (req,res) {
+    res.json(response.id);
 });
 
 app.get("/articles401/:id", function (req, res) {
@@ -324,25 +339,10 @@ app.post("/results", function (req, res) {
     res.json(article);
 });
 
-app.put("/articles", function (req, res) {
-    articles = req.body;
-    res.json(articles);
-});
-
-app.put("/results", function (req, res) {
-    results = req.body;
-    res.json(results);
-});
-
 app.delete("/articles", function (req, res) {
     let id = req.query.id || req.body.id;
     articles = articles.filter(article => id != article.id);
     res.json({idWasRemoved: Number(id)});
-});
-
-app.delete("/results", function (req, res) {
-    results = [];
-    res.json(results);
 });
 
 app.delete("/articles/:id", function (req, res) {
@@ -351,33 +351,86 @@ app.delete("/articles/:id", function (req, res) {
     res.json({idWasRemoved: Number(id)});
 });
 
-app.patch("/articles", function (req, res) {
-    let article = articles.filter(article => id == article.id)[0];
+app.patch("/articles/:id", function (req, res) {
+    let id = req.params.id;
+    let i = articles.indexOf(articles.filter(article => id == article.id)[0]);
 
     if (req.body.title) {
-        article.title = req.body.title;
+        articles[i].title = req.body.title;
     }
-
     if (req.body.summary) {
-        article.summary = req.body.summary;
+        articles[i].author = req.body.summary;
     }
     if (req.body.createdAt) {
-        article.createdAt = req.body.createdAt;
-    }
-
-    if (req.body.author) {
-        article.author = req.body.author;
+        articles[i].createdAt = req.body.createdAt;
     }
     if (req.body.content) {
-        article.content = req.body.content;
+        articles[i].content = req.body.content;
     }
-
     if (req.body.tags) {
-        article.tags = req.body.tags;
+        articles[i].tags = req.body.tags;
     }
-    res.json(article);
+    res.json(articles[i]);
 });
 
 app.listen(app.get("port"), function() {
     console.log("Node app is running on port", app.get("port"));
 });
+
+
+function validateArticle(article) {
+    if (article.id === undefined || article.title === undefined || article.author === undefined || article.summary === undefined || article.createdAt == null || article.content === undefined) {
+        return false;
+    }
+    if (article.tags.length === 0 || article.title.length >= 100 || article.summary.length >= 200 || article.title.length === 0 || article.summary.length === 0) {
+        return false;
+    }
+    return true;
+}
+function compareDates(a, b) {
+    return (a.createdAt - b.createdAt);
+}
+
+function isSearched(element) {
+    return (compareAuthor(element) && compareDate(element) && compareTags(element));
+}
+
+function compareAuthor(element) {
+    if (filterConfig.author) {
+        if (filterConfig.author.toLowerCase() === element.author.toLowerCase()) {
+            return true;
+        }
+        return false;
+    }
+    return true;
+}
+
+function compareDate(element) {
+    if (filterConfig.createdBefore && filterConfig.createdAfter) {
+        if (filterConfig.createdAfter.getTime() <= element.createdAt.getTime() && filterConfig.createdBefore.getTime() >= element.createdAt.getTime()) {
+            return true;
+        }
+        return false;
+    }
+    return true;
+}
+
+function find(array, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == value) return i;
+    }
+    return -1;
+}
+
+function compareTags(element) {
+    if (filterConfig.tags) {
+        var filter = filterConfig.tags.split(", ");
+        for (var i = 0; i < element.tags.length; i++) {
+            if ((find(filter, element.tags[i]) != -1) && element.tags[i] != "") {
+                return true;
+            }
+        }
+        return false;
+    }
+    return true;
+}

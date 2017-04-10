@@ -3,7 +3,8 @@
 var ACDomService = (function () {
     document.addEventListener("DOMContentLoaded", startApp);
     var user = localStorage.getItem("user") || null;
-    var change = false;
+    let change = false;
+    let id;
 
     function startApp() {
         if (user != null) {
@@ -15,18 +16,27 @@ var ACDomService = (function () {
             document.getElementById("add-news").addEventListener("click", handleAddNews);
         }
         else guest();
-        if (localStorage.getItem("changingArticle")) {
-            change = true;
-            console.log(1);
-            createMessage(articleService.getArticle(localStorage.getItem("changingArticle")));
-        }
-        else {
-            change = false;
-        }
+        let oReq = request.createGetRequest("/id");
+        oReq.onreadystatechange = function () {
+            id = window.id = JSON.parse(oReq.responseText);
+            console.log(oReq);
+            if (id) {
+                change = true;
+                let oReq = request.createGetRequest("/articles/:" + id);
+                oReq.onreadystatechange=function(){
+                    let article = JSON.parse(oReq.responseText,articleService.parseDate);
+                    createMessage(article);
+                };
+            }
+            else {
+                change = false;
+            }
+        };
     }
 
     function ACArticle() {
-        var article = {
+        console.log(id);
+        let article = {
             id: undefined,
             author: undefined,
             createdAt: undefined,
@@ -40,16 +50,12 @@ var ACDomService = (function () {
         article.content = ChangingArticleText.value;
         article.tags = ChangingTags.value.split(", ");
         if (change) {
-            localStorage.setItem("articleTemp", JSON.stringify(article));
-            articleService.editArticle(localStorage.getItem("changingArticle"));
-            localStorage.setItem("id", JSON.parse((localStorage.getItem("changingArticle")), articleService.parseDate));
+            articleService.editArticle(id,article);
         }
         else {
             article.author = user;
             article.createdAt = new Date();
-            localStorage.setItem("articleTemp", JSON.stringify(article));
-            localStorage.setItem("id", localStorage.getItem("size"));
-            articleService.addArticle();
+            articleService.addArticle(article);
         }
     }
 

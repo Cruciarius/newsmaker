@@ -1,11 +1,8 @@
 "use strict";
-var mkay = true;
-
 var domService = (function () {
 
     document.addEventListener("DOMContentLoaded", startApp);
 
-// let articles = db.connect("/public");
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
@@ -19,18 +16,6 @@ var domService = (function () {
         }
         else guest();
         createTagsList();
-        /*articleService.countArticles();
-            let oReq = new XMLHttpRequest();
-            oReq.open("GET", "/length");
-            oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
-            oReq.send();
-            oReq.onreadystatechange = function () {
-                if (oReq.readyState == 4) {
-                    let total = JSON.parse(oReq.responseText);
-                    let paginationParams = pagination.init(total.value, getArticles);
-                    getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
-                }
-            };*/
         handleClickShowMore();
     }
 
@@ -54,20 +39,17 @@ var domService = (function () {
         document.getElementById("select").innerHTML = str;
     }
 
-    function getArticles(skip, top, fw) {
+    function getArticles(string) {
+        string = string || "/articles?skip=0&top=10";
         clearPage();
-        let oReq = new XMLHttpRequest();
-        articleService.getArticles(skip,top,fw);
-         oReq.open("GET", "/results");
-         oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
-         oReq.send();
-         oReq.onreadystatechange = function () {
+        let oReq = request.createGetRequest(string);
+        oReq.onreadystatechange = function () {
              if (oReq.readyState == 4) {
                  if (oReq.status != 200) {
                      alert(oReq.status + ': ' + oReq.statusText);
                  }
                  else {
-                     let articles = JSON.parse(oReq.responseText.toString(), articleService.parseDate);
+                     let articles = JSON.parse(oReq.responseText, articleService.parseDate).articles;
                      for (let i = 0; i < articles.length; i++) {
                          let message = createMessage(articles[i]);
                          document.getElementById("News").appendChild(message);

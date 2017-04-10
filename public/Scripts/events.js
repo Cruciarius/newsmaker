@@ -5,13 +5,11 @@ var pagination = (function () {
     var PER_PAGE = 10;
     var CURRENT_PAGE = 1;
     var SHOW_MORE_BUTTON;
-    var SHOW_MORE_CALLBACK;
 
-    function init(total, showMoreCb) {
+    function init(total){
         TOTAL = total;
-        SHOW_MORE_CALLBACK = showMoreCb;
-        SHOW_MORE_BUTTON = document.getElementById("show-10-news");
-        SHOW_MORE_BUTTON.addEventListener('click', handleShowMoreClick);
+       SHOW_MORE_BUTTON = document.getElementById("show-10-news");
+       SHOW_MORE_BUTTON.addEventListener('click', handleShowMoreClick);
 
         if (getTotalPages() <= CURRENT_PAGE) {
             hideShowMoreButton();
@@ -19,9 +17,8 @@ var pagination = (function () {
         return getParams();
     }
 
-    function handleShowMoreClick() {
+   function handleShowMoreClick() {
         var paginationParams = nextPage();
-        SHOW_MORE_CALLBACK(paginationParams.skip, paginationParams.top, articleService.filterConfig);
     }
 
     function getTotalPages() {
@@ -60,16 +57,22 @@ var changeArticle = document.getElementById("changeArticle");
 var apply = document.getElementById("apply");
 var remove = document.getElementById("removeArticle");
 var log = document.getElementById("authorisation");
+let filterConfig = {
+    author: undefined,
+    createdAfter: undefined,
+    createdBefore: undefined,
+    tags: undefined
+};
 
 function handleClickShowMore() {
-    articleService.filterConfig.author = author.value;
+    filterConfig.author = author.value;
     if (fromDate.value && toDate.value) {
-        articleService.filterConfig.createdAfter = new Date(fromDate.value);
-        articleService.filterConfig.createdBefore = new Date(toDate.value);
+        filterConfig.createdAfter = new Date(fromDate.value);
+        filterConfig.createdBefore = new Date(toDate.value);
     }
     if (select.value) {
         let options = [].slice.call(select.options);
-        articleService.filterConfig.tags = options
+        filterConfig.tags = options
             .filter(function (option) {
                 return option.selected;
             })
@@ -80,37 +83,34 @@ function handleClickShowMore() {
         select.value = undefined;
     }
     else {
-        articleService.filterConfig.author = undefined;
-        articleService.filterConfig.createdAfter = undefined;
-        articleService.filterConfig.createdBefore = undefined;
-        articleService.filterConfig.tags = undefined;
+        filterConfig.author = undefined;
+        filterConfig.createdAfter = undefined;
+        filterConfig.createdBefore = undefined;
+        filterConfig.tags = undefined;
     }
-    articleService.countArticles(articleService.filterConfig);
-        let oReq = new XMLHttpRequest();
-        oReq.open("GET", "/length");
-        oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
-        oReq.send();
+        let oReq = request.createGetRequest("/articles");
         oReq.onreadystatechange = function () {
             if (oReq.readyState == 4) {
-                let total = JSON.parse(oReq.responseText);
-                let paginationParams = pagination.init(total.value, articleService.getArticles);
-                domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
+                let total = JSON.parse(oReq.responseText).length;
+                let paginationParams = pagination.init(total.value);
+                let string = request.createArticlesString(filterConfig,paginationParams);
+                domService.getArticles(string);
             }
         };
 
 }
 
+
 function goToArticlePage(event) {
     if (event.target.className !== "Name") {
         return;
     }
-    var id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
+    window.id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
     location.href = "article.html";
-    localStorage.setItem("id", id);
 }
+
 function handleApply() {
     ACDomService.ACArticle();
-    localStorage.removeItem("changingArticle");
     location.href = "article.html";
 }
 
