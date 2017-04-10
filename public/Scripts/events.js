@@ -6,6 +6,7 @@ var pagination = (function () {
     var CURRENT_PAGE = 1;
     var SHOW_MORE_BUTTON;
     var SHOW_MORE_CALLBACK;
+    var isFirst = true;
 
     function init(total, showMoreCb) {
         TOTAL = total;
@@ -16,7 +17,6 @@ var pagination = (function () {
         if (getTotalPages() <= CURRENT_PAGE) {
             hideShowMoreButton();
         }
-
         return getParams();
     }
 
@@ -50,7 +50,8 @@ var pagination = (function () {
     }
 
     return {
-        init: init
+        init: init,
+        isFirst: isFirst
     }
 }());
 var searchButton = document.getElementById("search-button");
@@ -69,7 +70,7 @@ function handleClickShowMore() {
         articleService.filterConfig.createdBefore = new Date(toDate.value);
     }
     if (select.value) {
-        var options = [].slice.call(select.options);
+        let options = [].slice.call(select.options);
         articleService.filterConfig.tags = options
             .filter(function (option) {
                 return option.selected;
@@ -86,9 +87,18 @@ function handleClickShowMore() {
         articleService.filterConfig.createdBefore = undefined;
         articleService.filterConfig.tags = undefined;
     }
-    var total = articleService.getArticlesLength(articleService.filterConfig);
-    var paginationParams = pagination.init(total, domService.getArticles);
-    domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
+    articleService.countArticles(articleService.filterConfig);
+        let oReq = new XMLHttpRequest();
+        oReq.open("GET", "/length");
+        oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
+        oReq.send();
+        oReq.onreadystatechange = function () {
+            if (oReq.readyState == 4) {
+                let total = JSON.parse(oReq.responseText);
+                let paginationParams = pagination.init(total.value, domService.getArticles);
+                domService.getArticles(paginationParams.skip, paginationParams.top, articleService.filterConfig);
+            }
+        };
 }
 
 function goToArticlePage(event) {

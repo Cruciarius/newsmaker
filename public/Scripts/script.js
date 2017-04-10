@@ -265,22 +265,76 @@ var articleService = (function () {
         filterConfig = fc || filterConfig;
         skip = skip || 0;
         top = top || 10;
-        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        articles = articles.sort(compareDates);
-        var arr = [];
-        for (var i = skip; i < articles.length && top > 0; i++) {
-            if (isSearched(articles[i])) {
-                if (validateArticle(articles[i])) {
-                    arr.push(articles[i]);
-                    top--;
+        let len = {
+            value:0,
+        };
+        let oReq = new XMLHttpRequest();
+        let xReq = new XMLHttpRequest();
+        oReq.open("GET", "/articles");
+        oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
+        oReq.send();
+        oReq.onreadystatechange = function (){
+            if (oReq.readyState == 4) {
+                if (oReq.status != 200) {
+                    alert(oReq.status + ': ' + oReq.statusText);
+                }
+                else {
+                    articles = oReq.responseText;
+                    articles = JSON.parse(articles, parseDate);
+                    articles = articles.sort(compareDates);
+                    let arr = [];
+                    for (let i = skip; i < articles.length && top > 0; i++) {
+                        if (isSearched(articles[i])) {
+                            if (validateArticle(articles[i])) {
+                                arr.push(articles[i]);
+                                len.value++;
+                                top--;
+                            }
+                        }
+                    }
+                    filterConfig = undefined;
+                    xReq.open("PUT", "/results", true);
+                    xReq.setRequestHeader('content-type', 'application/json');
+                    xReq.send(JSON.stringify(arr));
                 }
             }
-        }
-        localStorage.setItem("articles", JSON.stringify(arr.sort(compareDates)));
-        filterConfig = undefined;
-        return arr.sort(compareDates);
+        };
     }
 
+    function countArticles(fc) {
+        filterConfig = fc || filterConfig;
+        let len = {
+            value:0,
+        };
+        let oReq = new XMLHttpRequest();
+        let xReq = new XMLHttpRequest();
+        oReq.open("GET", "/articles");
+        oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
+        oReq.send();
+        oReq.onreadystatechange = function (){
+            if (oReq.readyState == 4) {
+                if (oReq.status != 200) {
+                    alert(oReq.status + ': ' + oReq.statusText);
+                }
+                else {
+                    articles = oReq.responseText;
+                    articles = JSON.parse(articles, parseDate);
+                    for (let i = 0; i < articles.length; i++) {
+                        if (isSearched(articles[i])) {
+                            if (validateArticle(articles[i])) {
+                                len.value++;
+                            }
+                        }
+                    }
+                    filterConfig = undefined;
+                    xReq.open("PUT", "/length");
+                    console.log(len);
+                    xReq.setRequestHeader('content-type', 'application/json');
+                    xReq.send(JSON.stringify(len));
+                }
+            }
+        };
+    }
     function getArticle(id) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         for (var i = 0; i < articles.length; i++) {
@@ -301,7 +355,7 @@ var articleService = (function () {
     }
 
     function validateArticle(article) {
-        if (article.id === undefined || article.title === undefined || article.author === undefined || article.summary === undefined || article.createdAt === undefined || article.content === undefined) {
+        if (article.id === undefined || article.title === undefined || article.author === undefined || article.summary === undefined || article.createdAt == null || article.content === undefined) {
             return false;
         }
         if (article.tags.length === 0 || article.title.length >= 100 || article.summary.length >= 200 || article.title.length === 0 || article.summary.length === 0) {
@@ -373,13 +427,6 @@ var articleService = (function () {
 
     function removeArticle(id) {
         articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        /*if (articles[id - 1]) {
-         articles[id-1].deleted = true;
-         articles.splice(id - 1, 1);
-         localStorage.setItem("allArticles",JSON.stringify(articles));
-         return true;
-         }
-         return false;*/
 
         var i = getPosition(id);
         if (i != -1) {
@@ -412,9 +459,7 @@ var articleService = (function () {
     }
 
     function isSearched(element) {
-        var result = false;
-        result = (compareAuthor(element) && compareDate(element) && compareTags(element));
-        return result;
+        return (compareAuthor(element) && compareDate(element) && compareTags(element));
     }
 
     function compareAuthor(element) {
@@ -457,16 +502,6 @@ var articleService = (function () {
         return true;
     }
 
-    function getArticlesLength(fc) {
-        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-        if (!fc) {
-            return articles.length;
-        }
-        else {
-            return getArticles(0, articles.length, fc).length;
-        }
-    }
-
     function parseDate(key, value) {
         if (key == 'createdAt') {
             return new Date(value);
@@ -484,7 +519,7 @@ var articleService = (function () {
         removeArticle: removeArticle,
         addTag: addTag,
         removeTag: removeTag,
-        getArticlesLength: getArticlesLength,
+        countArticles: countArticles,
         parseDate: parseDate,
         filterConfig: filterConfig
     }
