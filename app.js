@@ -2,6 +2,7 @@ let express = require("express");
 let app = express();
 let bodyParser = require("body-parser");
 let db = require("diskdb");
+db.connect("./public/Data", ["articles.json"]);
 
 app.set("port", (process.env.PORT || 5000));
 
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let articles = [
+/*let articles = [
     {
         id: "1",
         title: "Минское «Динамо» обыграло ярославский «Локомотив»",
@@ -233,7 +234,8 @@ let articles = [
         tags: ["people", "society"],
         deleted: false
     }
-];
+];*/
+let articles = db.articles.find();
 
 let filterConfig = {
     skip:undefined,
@@ -243,18 +245,6 @@ let filterConfig = {
     createdBefore: undefined,
     tags: undefined
 };
-
-for(let i = 0; i < 5; i++) {
-    articles.push({
-        id: i,
-        title: `title${i}`,
-        summary: `summary${i}`,
-        createdAt: new Date("2057-02-27"),
-        author: `author${i}`,
-        content:  `content${i}`,
-        tags: `tags${i}`,
-    });
-}
 
 let response = {
     articles:undefined,
@@ -373,7 +363,7 @@ function validateArticle(article) {
     return true;
 }
 function compareDates(a, b) {
-    return (a.createdAt - b.createdAt);
+    return (new Date(a.createdAt) - new Date(b.createdAt));
 }
 
 function isSearched(element) {
