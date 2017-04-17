@@ -1,7 +1,4 @@
-/**
- * Created by Cruciarius on 10.04.2017.
- */
-var request = (function () {
+/*export*/ let request = (function () {
     function createGetRequest(string){
         let oReq = new XMLHttpRequest();
         oReq.open("GET", string);
@@ -63,5 +60,5 @@ var request = (function () {
         createPatchRequest:createPatchRequest,
         createDeleteRequest:createDeleteRequest,
         createArticlesString:createArticlesString,
-    }
+    };
 }());

@@ -2,7 +2,7 @@ var loginService = (function () {
     document.addEventListener("DOMContentLoaded", guest);
     var user = localStorage.getItem("user") || null;
 
-    var users = [
+    let users = [
         {
             login: "vasya",
             password: "111111"
@@ -32,14 +32,14 @@ var loginService = (function () {
     }
 
     function guest() {
-        document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
-            <img src="Images/logo.png" class="image-Logo">Welcome, guest!</div>\
-            <button class="White-Button" id="log-in">Log In</button>';
+        document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
+            <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, guest!</div>\
+            <button class=\"White-Button\" id=\"log-in\">Log In</button>";
         document.getElementById("log-in").addEventListener("click", handleClickLogIn);
     }
 
     return {
         log: log
-    }
+    };
 
 }());

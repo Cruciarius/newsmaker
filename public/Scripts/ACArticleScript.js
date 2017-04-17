@@ -1,6 +1,9 @@
 "use strict";
+/*import {handleAddNews, handleClickLogIn} from "events.js";
+import {request} from "createRequest.js";
+import {articleService} from "script.js";*/
 
-var ACDomService = (function () {
+/*export*/ let ACDomService = (function () {
     document.addEventListener("DOMContentLoaded", startApp);
     var user = localStorage.getItem("user") || null;
     let change = false;
@@ -8,27 +11,27 @@ var ACDomService = (function () {
 
     function startApp() {
         if (user != null) {
-            document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
-            <img src="Images/logo.png" class="image-Logo">Welcome, ' + user + '! </div>\
-            <button class="White-Button " style="margin-right: 3.5%" id="add-news">Add News</button>\
-            <button class="White-Button" id="log-out">Log Out</button>';
+            document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
+            <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, " + user + "! </div>\
+            <button class=\"White-Button \" style=\"margin-right: 3.5%\" id=\"add-news\">Add News</button>\
+            <button class=\"White-Button\" id=\"log-out\">Log Out</button>";
             document.getElementById("log-out").addEventListener("click", guest);
             document.getElementById("add-news").addEventListener("click", handleAddNews);
         }
         else guest();
-            if (id) {
-                change = true;
-                let oReq = request.createGetRequest("/articles/" + id);
-                oReq.onreadystatechange=function(){
-                    if (oReq.readyState == 4) {
-                        let article = JSON.parse(oReq.responseText, articleService.parseDate);
-                        createMessage(article);
-                    }
-                };
-            }
-            else {
-                change = false;
-            }
+        if (id) {
+            change = true;
+            let oReq = request.createGetRequest("/articles/" + id);
+            oReq.onreadystatechange=function(){
+                if (oReq.readyState == 4) {
+                    let article = JSON.parse(oReq.responseText, articleService.parseDate);
+                    createMessage(article);
+                }
+            };
+        }
+        else {
+            change = false;
+        }
     }
 
     function ACArticle() {
@@ -57,15 +60,15 @@ var ACDomService = (function () {
     }
 
     function guest() {
-        document.getElementsByTagName("header")[0].innerHTML = '<div class="user">\
-            <img src="Images/logo.png" class="image-Logo">Welcome, guest!</div>\
-            <button class="White-Button" id="log-in">Log In</button>';
+        document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
+            <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, guest!</div>\
+            <button class=\"White-Button\" id=\"log-in\">Log In</button>";
         document.getElementById("log-in").addEventListener("click", handleClickLogIn);
     }
 
     function createMessage(article) {
-        var tags = "";
-        for (var i = 0; i < article.tags.length; i++) {
+        let tags = "";
+        for (let i = 0; i < article.tags.length; i++) {
             tags += article.tags[i];
             tags += ", ";
         }
@@ -78,6 +81,6 @@ var ACDomService = (function () {
 
     return {
         ACArticle: ACArticle
-    }
+    };
 
 }());
