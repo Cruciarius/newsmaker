@@ -21,13 +21,16 @@ import {articleService} from "script.js";*/
         else guest();
         if (id) {
             change = true;
-            let oReq = request.createGetRequest("/articles/" + id);
-            oReq.onreadystatechange=function(){
-                if (oReq.readyState == 4) {
-                    let article = JSON.parse(oReq.responseText, articleService.parseDate);
-                    createMessage(article);
+            let p = new Promise(function (resolve,reject) {
+                let oReq = request.createGetRequest("/articles/"+id);
+                oReq.onload = function () {
+                    resolve(oReq.responseText);
                 }
-            };
+            });
+            p.then(function (resolve) {
+                let article = JSON.parse(resolve, articleService.parseDate);
+                createMessage(article);
+            });
         }
         else {
             change = false;

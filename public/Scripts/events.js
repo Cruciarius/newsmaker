@@ -91,16 +91,18 @@ let id;
     else {
         filterConfig.tags = undefined;
     }
-    let oReq = request.createGetRequest("/articles");
-    oReq.onreadystatechange = function () {
-        if (oReq.readyState == 4) {
-            let total = JSON.parse(oReq.responseText).length;
-            let paginationParams = pagination.init(total);
-            let string = request.createArticlesString(filterConfig,paginationParams);
-            domService.getArticles(string);
+    let p = new Promise(function (resolve,reject) {
+        let oReq = request.createGetRequest("/articles");
+        oReq.onload = function () {
+            resolve(oReq.responseText);
         }
-    };
-
+    });
+    p.then(function (resolve) {
+        let total = JSON.parse(resolve).length;
+        let paginationParams = pagination.init(total);
+        let string = request.createArticlesString(filterConfig,paginationParams);
+        domService.getArticles(string);
+    });
 }
 
 
@@ -113,35 +115,41 @@ let id;
 }
 
 /*export*/ function handleChangeArticle() {
+    let p = new Promise(function (resolve,reject) {
     let oReq = request.createGetRequest("/id");
-    oReq.onreadystatechange = function () {
-        if (oReq.readyState == 4) {
-            id = JSON.parse(oReq.responseText);
-            location.href = "ACarticle.html?id=" + id;
-        }
-    };
+    oReq.onload = function () {
+        resolve(oReq.responseText);
+    }});
+    p.then(function (resolve) {
+        id = JSON.parse(resolve);
+        location.href = "ACarticle.html?id=" + id;
+    });
 }
 
 /*export*/ function handleApply() {
     ACDomService.ACArticle();
-    let oReq = request.createGetRequest("/id");
-    oReq.onreadystatechange = function () {
-        if (oReq.readyState == 4) {
-            id = JSON.parse(oReq.responseText);
-            location.href = "article.html?id=" + id;
-        }
-    };
+    let p = new Promise(function (resolve,reject) {
+        let oReq = request.createGetRequest("/id");
+        oReq.onload = function () {
+            resolve(oReq.responseText);
+        }});
+    p.then(function (resolve) {
+        id = JSON.parse(resolve);
+        location.href = "article.html?id=" + id;
+    });
 }
 
 /*export*/ function handleRemove() {
-    let oReq = request.createGetRequest("/id");
-    oReq.onreadystatechange = function () {
-        if (oReq.readyState == 4) {
-            id = JSON.parse(oReq.responseText);
-            articleService.removeArticle(id);
-            location.href = "index.html";
-        }
-    };
+    let p = new Promise(function (resolve,reject) {
+        let oReq = request.createGetRequest("/id");
+        oReq.onload = function () {
+            resolve(oReq.responseText);
+        }});
+    p.then(function (resolve) {
+        id = JSON.parse(resolve);
+        articleService.removeArticle(id);
+        location.href = "index.html";
+    });
 }
 /*export*/ function login() {
     if (loginService.log()) {

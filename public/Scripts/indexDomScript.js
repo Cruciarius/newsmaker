@@ -31,21 +31,19 @@ let domService = (function () {
     function getArticles(string) {
         string = string || "/articles?skip=0&top=10";
         clearPage();
-        let oReq = request.createGetRequest(string);
-        oReq.onreadystatechange = function () {
-            if (oReq.readyState == 4) {
-                if (oReq.status != 200) {
-                    alert(oReq.status + ": " + oReq.statusText);
-                }
-                else {
-                    let articles = JSON.parse(oReq.responseText, articleService.parseDate).articles;
-                    for (let i = 0; i < articles.length; i++) {
-                        let message = createMessage(articles[i]);
-                        document.getElementById("News").appendChild(message);
-                    }
-                }
+        let p = new Promise(function (resolve,reject) {
+            let oReq = request.createGetRequest(string);
+            oReq.onload = function () {
+                        resolve(oReq.responseText);
             }
-        };
+        });
+        p.then(function (resolve) {
+            let articles = JSON.parse(resolve, articleService.parseDate).articles;
+            for (let i = 0; i < articles.length; i++) {
+                let message = createMessage(articles[i]);
+                document.getElementById("News").appendChild(message);
+            }
+        });
     }
 
     function createMessage(article) {
