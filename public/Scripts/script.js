@@ -5,7 +5,6 @@ var articleService = (function () {
     var tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
 
     function getArticle(id) {
-        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
         for (var i = 0; i < articles.length; i++) {
             if (id === articles[i].id) {
                 return articles[i];
@@ -44,50 +43,15 @@ var articleService = (function () {
     }
 
     function addArticle(article) {
-        let oReq = request.createGetRequest("/articles");
-        oReq.onreadystatechange = function () {
-            article = article || JSON.parse(localStorage.getItem("articleTemp"));
-            for (var i = 0; i < tags.length; i++) {
-                if (tags.indexOf(article.tags[i]) === -1) {
-                    article.tags.splice(i, 1);
-                }
-            }
-            article.id = localStorage.getItem("size");
-            article.id++;
-            console.log(article.id);
-            if (validateArticle(article) && validateId(article.id)) {
-                article.id = (articles.length + 1).toString();
-                articles.push(article);
-                localStorage.setItem("size", article.id);
-                localStorage.setItem("allArticles", JSON.stringify(articles));
-                return true;
-            }
-            else {
-                return false;
-            }
-        };
-
+        request.createPostRequest("/articles",article);
     }
 
     function editArticle(id, article) {
-        let oReq = request.createGetRequest("/articles/:id");
-        oReq.onreadystatechange = function () {
-            id = JSON.parse(oReq.responseText,parseDate).id;
-            request.createPatchRequest("/articles/:"+id,article);
-        };
+        request.createPatchRequest("/articles/"+id,article);
     }
 
     function removeArticle(id) {
-        articles = JSON.parse(localStorage.getItem("allArticles"), parseDate);
-
-        var i = getPosition(id);
-        if (i != -1) {
-            articles[i].deleted = true;
-            articles.splice(i, 1);
-            localStorage.setItem("allArticles", JSON.stringify(articles));
-            return true;
-        }
-        return false;
+        request.createDeleteRequest("/articles/"+id);
     }
 
     function addTag(tag) {

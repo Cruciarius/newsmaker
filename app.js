@@ -1,6 +1,7 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+let express = require("express");
+let app = express();
+let bodyParser = require("body-parser");
+let db = require("diskdb");
 
 app.set("port", (process.env.PORT || 5000));
 
@@ -243,7 +244,7 @@ let filterConfig = {
     tags: undefined
 };
 
-for(let i = 1; i < 5; i++) {
+for(let i = 0; i < 5; i++) {
     articles.push({
         id: i,
         title: `title${i}`,
@@ -289,8 +290,8 @@ app.get("/articles", function (req,res) {
 });
 
 app.get("/articles/:id", function (req, res) {
-    response.id = req.params.id;
-    res.json(articles.filter(article => article.id)[0]);
+    let id = response.id = req.params.id;
+    res.json(articles.filter(article => id == article.id)[0]);
 });
 
 app.get("/id", function (req,res) {
@@ -320,23 +321,11 @@ app.post("/articles", function (req, res) {
         deleted: false,
         id: articles.length
     };
-    articles.push(article);
-    res.json(article);
-});
-
-app.post("/results", function (req, res) {
-    let article = {
-        title: req.body.title,
-        summary: req.body.summary,
-        createdAt: req.body.createdAt,
-        author: req.body.author,
-        content: req.body.content,
-        tags: req.body.tags,
-        deleted: false,
-        id: results.length
-    };
-    results.push(article);
-    res.json(article);
+    if(validateArticle(article)){
+        articles.push(article);
+        response.id = article.id;
+        res.json(article);
+    }
 });
 
 app.delete("/articles", function (req, res) {
@@ -352,25 +341,21 @@ app.delete("/articles/:id", function (req, res) {
 });
 
 app.patch("/articles/:id", function (req, res) {
-    let id = req.params.id;
+    let id = req.params.id.replace(":","");
     let i = articles.indexOf(articles.filter(article => id == article.id)[0]);
-
-    if (req.body.title) {
-        articles[i].title = req.body.title;
-    }
-    if (req.body.summary) {
-        articles[i].author = req.body.summary;
-    }
-    if (req.body.createdAt) {
-        articles[i].createdAt = req.body.createdAt;
-    }
-    if (req.body.content) {
-        articles[i].content = req.body.content;
-    }
-    if (req.body.tags) {
-        articles[i].tags = req.body.tags;
-    }
-    res.json(articles[i]);
+        if (req.body.title) {
+            articles[i].title = req.body.title;
+        }
+        if (req.body.summary) {
+            articles[i].summary = req.body.summary;
+        }
+        if (req.body.content) {
+            articles[i].content = req.body.content;
+        }
+        if (req.body.tags) {
+            articles[i].tags = req.body.tags;
+        }
+        res.json(articles[i]);
 });
 
 app.listen(app.get("port"), function() {
@@ -407,7 +392,7 @@ function compareAuthor(element) {
 
 function compareDate(element) {
     if (filterConfig.createdBefore && filterConfig.createdAfter) {
-        if (filterConfig.createdAfter.getTime() <= element.createdAt.getTime() && filterConfig.createdBefore.getTime() >= element.createdAt.getTime()) {
+        if ((new Date(filterConfig.createdAfter)).getTime() <= element.createdAt.getTime() && (new Date(filterConfig.createdBefore)).getTime() >= element.createdAt.getTime()) {
             return true;
         }
         return false;

@@ -63,12 +63,17 @@ let filterConfig = {
     createdBefore: undefined,
     tags: undefined
 };
+let id;
 
 function handleClickShowMore() {
-    filterConfig.author = author.value;
+    filterConfig.author = author.value || undefined;
     if (fromDate.value && toDate.value) {
         filterConfig.createdAfter = new Date(fromDate.value);
         filterConfig.createdBefore = new Date(toDate.value);
+    }
+    else {
+        filterConfig.createdAfter = undefined;
+        filterConfig.createdBefore = undefined;
     }
     if (select.value) {
         let options = [].slice.call(select.options);
@@ -83,9 +88,6 @@ function handleClickShowMore() {
         select.value = undefined;
     }
     else {
-        filterConfig.author = undefined;
-        filterConfig.createdAfter = undefined;
-        filterConfig.createdBefore = undefined;
         filterConfig.tags = undefined;
     }
         let oReq = request.createGetRequest("/articles");
@@ -105,38 +107,54 @@ function goToArticlePage(event) {
     if (event.target.className !== "Name") {
         return;
     }
-    window.id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
-    location.href = "article.html";
+    id = event.target.parentElement.getElementsByTagName("span")[0].textContent;
+    location.href = "article.html?id="+id;
+}
+
+function handleChangeArticle() {
+    let oReq = request.createGetRequest("/id");
+    oReq.onreadystatechange = function () {
+        if (oReq.readyState == 4) {
+            console.log(oReq);
+            id = JSON.parse(oReq.responseText);
+            location.href = "ACarticle.html?id=" + id;
+        }
+    };
 }
 
 function handleApply() {
     ACDomService.ACArticle();
-    location.href = "article.html";
+    let oReq = request.createGetRequest("/id");
+    oReq.onreadystatechange = function () {
+        if (oReq.readyState == 4) {
+            console.log(oReq);
+            id = JSON.parse(oReq.responseText);
+            location.href = "article.html?id=" + id;
+        }
+    };
 }
 
 function handleRemove() {
-    localStorage.setItem("deleted", localStorage.getItem("id"));
-    articleService.removeArticle(localStorage.getItem("deleted"));
-    location.href = "index.html";
+    let oReq = request.createGetRequest("/id");
+    oReq.onreadystatechange = function () {
+        if (oReq.readyState == 4) {
+            id = JSON.parse(oReq.responseText);
+            articleService.removeArticle(id);
+            location.href = "index.html";
+        }
+    };
 }
 function login() {
     if (loginService.log()) {
         location.href = "index.html";
     }
     else {
-        console.log(1);
         loginName.value = "WRONG USER";
     }
 }
 function goToMain() {
     location.href = "index.html";
 }
-
-function handleChangeArticle() {
-    localStorage.setItem("changingArticle", localStorage.getItem("id"));
-    location.href = "ACarticle.html";
-}
-
 
 function handleClickLogIn() {
     location.href = "autorisation.html";

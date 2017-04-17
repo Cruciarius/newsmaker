@@ -4,7 +4,7 @@ var ACDomService = (function () {
     document.addEventListener("DOMContentLoaded", startApp);
     var user = localStorage.getItem("user") || null;
     let change = false;
-    let id;
+    let id = request.getUrlVars()["id"];
 
     function startApp() {
         if (user != null) {
@@ -16,26 +16,22 @@ var ACDomService = (function () {
             document.getElementById("add-news").addEventListener("click", handleAddNews);
         }
         else guest();
-        let oReq = request.createGetRequest("/id");
-        oReq.onreadystatechange = function () {
-            id = window.id = JSON.parse(oReq.responseText);
-            console.log(oReq);
             if (id) {
                 change = true;
-                let oReq = request.createGetRequest("/articles/:" + id);
+                let oReq = request.createGetRequest("/articles/" + id);
                 oReq.onreadystatechange=function(){
-                    let article = JSON.parse(oReq.responseText,articleService.parseDate);
-                    createMessage(article);
+                    if (oReq.readyState == 4) {
+                        let article = JSON.parse(oReq.responseText, articleService.parseDate);
+                        createMessage(article);
+                    }
                 };
             }
             else {
                 change = false;
             }
-        };
     }
 
     function ACArticle() {
-        console.log(id);
         let article = {
             id: undefined,
             author: undefined,
@@ -50,6 +46,7 @@ var ACDomService = (function () {
         article.content = ChangingArticleText.value;
         article.tags = ChangingTags.value.split(", ");
         if (change) {
+            id = request.getUrlVars()["id"];
             articleService.editArticle(id,article);
         }
         else {

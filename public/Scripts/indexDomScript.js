@@ -2,7 +2,6 @@
 var domService = (function () {
 
     document.addEventListener("DOMContentLoaded", startApp);
-
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
@@ -68,43 +67,6 @@ var domService = (function () {
             }
         }
     }
-
-    function addArticle(article) {
-        if (articleService.getArticle(article.id)) {
-            if (!containsArticle(article.id)) {
-                let message = createMessage(article);
-                document.getElementById("News").appendChild(message);
-            }
-        }
-        else if (articleService.addArticle(article)) {
-            let message = createMessage(article);
-            document.getElementById("News").appendChild(message);
-        }
-    }
-
-    function findNextSibling(article) {
-        let items = document.getElementsByClassName("News-Box");
-        for (let i = 0; i < items.length; i++) {
-            let str = "<span>;";
-            str += article.createdAt.toLocaleDateString();
-            if (items[i].innerHTML.indexOf(str) != -1) {
-                return i + 1;
-            }
-        }
-        return false;
-    }
-
-    function editArticle(id, article) {
-        if (articleService.editArticle(id, article)) {
-            let i = containsArticle(id);
-            if (i) {
-                let NewMessage = createMessage(articleService.getArticle(id));
-                let items = document.getElementsByClassName("News-Box");
-                document.getElementById("News").replaceChild(NewMessage, items[i - 1]);
-            }
-        }
-    }
-
     function removeTag(tag) {
         if (articleService.removeTag(tag)) {
             let str = "<a href=\"tag\" class=\"Tag\">'";
@@ -157,8 +119,6 @@ var domService = (function () {
 
     return {
         getArticles: getArticles,
-        addArticle: addArticle,
-        editArticle: editArticle,
         removeArticle: removeArticle,
         removeTag: removeTag
     }

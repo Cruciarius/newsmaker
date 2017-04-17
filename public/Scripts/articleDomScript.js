@@ -4,7 +4,7 @@ var articleDomService = (function () {
 
     document.addEventListener("DOMContentLoaded", startApp);
 
-    let id = window.id;
+    let id = request.getUrlVars()["id"];
     var user = localStorage.getItem("user") || null;
 
     function startApp() {
@@ -23,10 +23,12 @@ var articleDomService = (function () {
             document.getElementById("removeArticle").addEventListener("click", handleRemove);
         }
         else guest();
-        let oReq = request.createGetRequest("/articles/:"+id);
+        let oReq = request.createGetRequest("/articles/"+id);
         oReq.onreadystatechange=function(){
-            let article = JSON.parse(oReq.responseText,articleService.parseDate);
-            showArticle(article);
+            if (oReq.readyState == 4) {
+                let article = JSON.parse(oReq.responseText, articleService.parseDate);
+                showArticle(article);
+            }
         }
     }
 
@@ -61,9 +63,5 @@ var articleDomService = (function () {
         <div class="Regular-Text">' + article.content + '</div>\
         <div class="Tags">' + tags + '</div></div>';
         return container.firstChild;
-    }
-
-    return {
-        showArticle:showArticle
     }
 }());
