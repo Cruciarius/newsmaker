@@ -1,8 +1,8 @@
 "use strict";
 
-/*import {handleAddNews,handleChangeArticle,goToMain,handleRemove,handleClickLogIn} from "events.js";
-import {request} from "createRequest.js";
-import {articleService} from "script.js";*/
+/*import {handleAddNews,handleChangeArticle,goToMain,handleRemove,handleClickLogIn} from "events";
+import {request} from "createRequest";
+import {articleService} from "script";*/
 
 let articleDomService = (function () {
 

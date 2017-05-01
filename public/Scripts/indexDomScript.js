@@ -37,8 +37,8 @@ let domService = (function () {
                         resolve(oReq.responseText);
             }
         });
-        p.then(function (resolve) {
-            let articles = JSON.parse(resolve, articleService.parseDate).articles;
+        p.then(function (response) {
+            let articles = JSON.parse(response, articleService.parseDate).articles;
             for (let i = 0; i < articles.length; i++) {
                 let message = createMessage(articles[i]);
                 document.getElementById("News").appendChild(message);

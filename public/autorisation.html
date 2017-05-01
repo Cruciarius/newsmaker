@@ -20,13 +20,15 @@
     </header>
     <div class="main">
         <div class="Big-Block">
-            Login
-            <input name="Login" class="Authorisation-Field" type="text" placeholder="Enter login" id="loginName"></input>
-            <br>
-            Password
-            <input name="Password" class="Authorisation-Field" type="text" placeholder="Enter password" id="passwordName"></input>
-            <br>
-            <button class="Grey-Button" id="authorisation">Apply</button>
+            <form action="/authorise" method="post">
+                Login
+                <input name="username" class="Authorisation-Field" type="text" placeholder="Enter login" id="loginName"></input>
+                <br>
+                Password
+                <input name="password" class="Authorisation-Field" type="password" placeholder="Enter password" id="passwordName"></input>
+                <br>
+                <button class="Grey-Button" id="authorisation" type="submit">Apply</button>
+            </form>
         </div>
     </div>
     <footer>

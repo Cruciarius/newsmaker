@@ -21,11 +21,16 @@
     "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
     "babel-preset-node6": "^11.0.0",
     "body-parser": "^1.17.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "diskdb": "^0.1.17",
     "es6-promise": "^4.1.0",
     "eslint": "^3.19.0",
     "expres": "0.0.5",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "promise": "^7.1.1"
   },
   "devDependencies": {

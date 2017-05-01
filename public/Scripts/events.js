@@ -1,6 +1,4 @@
 "use strict";
-/*import {request} from "createRequest.js";
-import {ACDomService} from "ACArticleScript.js";*/
 
 let pagination = (function () {
     var TOTAL;
@@ -66,7 +64,7 @@ let filterConfig = {
 };
 let id;
 
-/*export*/ function handleClickShowMore() {
+function handleClickShowMore() {
     filterConfig.author = author.value || undefined;
     if (fromDate.value && toDate.value) {
         filterConfig.createdAfter = new Date(fromDate.value);
@@ -106,7 +104,7 @@ let id;
 }
 
 
-/*export*/ function goToArticlePage(event) {
+function goToArticlePage(event) {
     if (event.target.className !== "Name") {
         return;
     }
@@ -114,7 +112,7 @@ let id;
     location.href = "article.html?id="+id;
 }
 
-/*export*/ function handleChangeArticle() {
+function handleChangeArticle() {
     let p = new Promise(function (resolve,reject) {
     let oReq = request.createGetRequest("/id");
     oReq.onload = function () {
@@ -126,7 +124,7 @@ let id;
     });
 }
 
-/*export*/ function handleApply() {
+function handleApply() {
     ACDomService.ACArticle();
     let p = new Promise(function (resolve,reject) {
         let oReq = request.createGetRequest("/id");
@@ -139,7 +137,7 @@ let id;
     });
 }
 
-/*export*/ function handleRemove() {
+function handleRemove() {
     let p = new Promise(function (resolve,reject) {
         let oReq = request.createGetRequest("/id");
         oReq.onload = function () {
@@ -151,23 +149,15 @@ let id;
         location.href = "index.html";
     });
 }
-/*export*/ function login() {
-    if (loginService.log()) {
-        location.href = "index.html";
-    }
-    else {
-        loginName.value = "WRONG USER";
-    }
-}
-/*export*/ function goToMain() {
+function goToMain() {
     location.href = "index.html";
 }
 
-/*export*/ function handleClickLogIn() {
+function handleClickLogIn() {
     location.href = "autorisation.html";
 }
 
-/*export*/ function handleAddNews() {
+function handleAddNews() {
     location.href = "ACarticle.html";
 }
 if (showNewsButton) {
