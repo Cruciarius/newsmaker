@@ -1,30 +1,45 @@
 "use strict";
-/*import {handleAddNews, handleClickLogIn, handleClickShowMore} from "events.js";
-import {request} from "createRequest.js";
-import {articleService} from "script.js";*/
 let domService = (function () {
 
     document.addEventListener("DOMContentLoaded", startApp);
-    let user = localStorage.getItem("user") || null;
+    let user;
+    let tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
 
     function startApp() {
-        if (user != null) {
-            document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
+        let p = new Promise(function (resolve,reject) {
+            let oReq = request.createGetRequest("/user");
+            oReq.onload = function () {
+                resolve(oReq.responseText);
+            }
+        });
+        p.then(function (response) {
+            user = JSON.parse(response);
+            if (user != undefined) {
+                document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
  <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, " + user + "! </div>\
  <button class=\"White-Button \" style=\"margin-right: 3.5%\" id=\"add-news\">Add News</button>\
  <button class=\"White-Button\" id=\"log-out\">Log Out</button>";
-            document.getElementById("log-out").addEventListener("click", guest);
-            document.getElementById("add-news").addEventListener("click", handleAddNews);
-        }
-        else guest();
-        createTagsList();
-        handleClickShowMore();
+                document.getElementById("log-out").addEventListener("click", guest);
+                document.getElementById("add-news").addEventListener("click", handleAddNews);
+            }
+            else guest();
+            createTagsList();
+            handleClickShowMore();
+        })
     }
 
     function guest() {
+        let p = new Promise(function (resolve,reject) {
+            let oReq = request.createDeleteRequest("/user");
+            oReq.onload = function () {
+                resolve(oReq.responseText);
+            }
+        });
+        p.then(function (response) {
+        });
         document.getElementsByTagName("header")[0].innerHTML = "<div class=\"user\">\
- <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, guest!</div>\
- <button class=\"White-Button\" id=\"log-in\">Log In</button>";
+        <img src=\"Images/logo.png\" class=\"image-Logo\">Welcome, guest!</div>\
+        <button class=\"White-Button\" id=\"log-in\">Log In</button>";
         document.getElementById("log-in").addEventListener("click", handleClickLogIn);
     }
 
@@ -50,7 +65,8 @@ let domService = (function () {
         let container = document.createElement("div");
         let tags = "";
         for (let i = 0; i < article.tags.length; i++) {
-            tags += "<a href=\"tag\" class=\"Tag\">'";
+            //tags += "<a href=\"articles?tags=" + article.tags[i] + "\" class=\"Tag\">'";
+            tags += "<a href=\"articles?tags=" + article.tags[i] + "\" class=\"Tag\">'";
             tags += article.tags[i];
             tags += "'</a>  ";
         }
@@ -72,7 +88,6 @@ let domService = (function () {
 
     function createTagsList() {
         let str = "<option value=''></option>";
-        let tags = JSON.parse(localStorage.getItem("allTags"));
         for (let i = 0; i < tags.length; i++) {
             str += "<option value='";
             str += tags[i];

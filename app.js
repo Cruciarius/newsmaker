@@ -1,6 +1,6 @@
-var express = require("express");
-var http = require("http");
-var app = express();
+let express = require("express");
+let http = require("http");
+let app = express();
 
 
 require("./Boot/index")(app);

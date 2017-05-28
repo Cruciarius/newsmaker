@@ -1,15 +1,11 @@
 let passport = require('passport');
 
 module.exports = function (app) {
-
     app.get('/authorise', function (req, res) {
-        console.log(1);
         if (req.isAuthenticated()) {
-            console.log(2);
             res.redirect('/');
         }
-        console.log(3);
-        res.redirect("/authorise");
+        else res.redirect("/authorise");
     });
 
     app.get('/sign-out', function (req, res) {
@@ -32,8 +28,4 @@ module.exports = function (app) {
             }
         )(req, res, next)
     });
-    
-    function isA() {
-        
-    }
 };

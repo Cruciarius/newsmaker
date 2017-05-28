@@ -182,5 +182,5 @@ if (remove) {
     remove.addEventListener("click", handleRemove);
 }
 if (log) {
-    log.addEventListener("click", login);
+    log.addEventListener("click", handleClickLogIn);
 }

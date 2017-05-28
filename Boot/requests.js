@@ -1,5 +1,4 @@
 let express = require("express");
-let app = express();
 let bodyParser = require("body-parser");
 let db = require("diskdb");
 let passport = require("passport");
@@ -7,7 +6,7 @@ let cookieParser = require('cookie-parser');
 let flash = require("connect-flash");
 let session = require("express-session");
 
-db.connect("./public/Data", ["articles.json"]);
+db.connect("./public/Data", ["articles.json"],["tags.json"]);
 module.exports = function (app) {
     app.set("port", (process.env.PORT || 5000));
     app.use(express.static("public"));
@@ -20,6 +19,7 @@ module.exports = function (app) {
     app.use(passport.session());
 
     let articles = db.articles.find();
+    let user;
 
     let filterConfig = {
         skip: undefined,
@@ -50,6 +50,16 @@ module.exports = function (app) {
         }
         return arr;
     }
+
+    app.get("/user",function (req,res){
+        user = app.locals.user||null;
+        res.json(user);
+    });
+
+    app.delete("/user", function (req, res) {
+        app.locals.user = undefined;
+        res.json(app.locals.user);
+    });
 
     app.get("/articles", function (req, res) {
         filterConfig.skip = req.query.skip || 0;
@@ -93,7 +103,7 @@ module.exports = function (app) {
             content: req.body.content,
             tags: req.body.tags,
             deleted: false,
-            id: articles.length
+            id: articles.length+1
         };
         if (validateArticle(article)) {
             articles.push(article);

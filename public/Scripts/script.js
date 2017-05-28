@@ -1,7 +1,5 @@
 "use strict";
-//import {request} from "createRequest.js";
-
-/*export*/ let articleService = (function () {
+let articleService = (function () {
 
     let tags = ["sports", "ecology", "politics", "cinema", "games", "animals", "people", "society"];
 

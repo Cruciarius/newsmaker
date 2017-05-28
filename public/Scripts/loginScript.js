@@ -7,5 +7,5 @@ let loginService = (function () {
             <button class=\"White-Button\" id=\"log-in\">Log In</button>";
         document.getElementById("log-in").addEventListener("click", handleClickLogIn);
     }
-    
+
 }());
